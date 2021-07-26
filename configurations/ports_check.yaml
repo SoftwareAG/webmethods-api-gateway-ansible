@@ -19,6 +19,7 @@
         msg: 
         - "Common webMethods Check_Service_Running tasks with params:"
         - "pvar_inventory_hosts_pattern = {{ pvar_inventory_hosts_pattern | default('undefined', true) }}"
+        - "pvar_validation_host = {{ pvar_validation_host | default('undefined', true) }}"
         - "pvar_validation_ports = {{ pvar_validation_ports | default('undefined', true) }}"
         - "pvar_validation_ports_timeout = {{ pvar_validation_ports_timeout | default('120', true) }}"
         - "pvar_validation_ports_delay = {{ pvar_validation_ports_delay | default('0', true) }}"
