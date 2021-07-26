@@ -1,9 +1,14 @@
 ---
 
+# apigateway REST access configs
+vars_apigateway_rest_protocol: "{{ vars_apigateway_protocol }}"
+vars_apigateway_rest_host: "{{ vars_apigateway_host }}"
+vars_apigateway_rest_port: "{{ vars_apigateway_port }}"
+
 # apigateway portchecks configs
-vars_portscheck_host: "{{ vars_apigateway_rest_host }}"
+vars_portscheck_host: "{{ vars_apigateway_host }}"
 vars_portscheck_ports:
-  - "{{ vars_apigateway_rest_port }}"
+  - "{{ vars_apigateway_port }}"
 vars_portscheck_ports_timeout: 900
 
 # local users
