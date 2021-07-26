@@ -1,0 +1,51 @@
+---
+
+### Check_Service_Running: Enforce that the service is started, and that the ports are accessible from command central server
+### minimum params:
+### pvar_inventory_hosts_pattern (type: string - the target ansible group to install the CCE template)
+### pvar_validation_ports (type: list)
+### pvar_validation_ports_timeout (type: number)
+### pvar_validation_ports_delay (type: number)
+
+- name: Check for listening ports, and fail if not expected
+  hosts: "{{ pvar_inventory_hosts_pattern }}"
+  become: true
+  tasks:
+    ## this is to make sure we gather the facts again as the user {{ cce_owner }} in order to get a valid {{ ansible_env.HOME }}
+    - setup:
+    
+    - name: Print the params for the common-webmethods-portscheck tasks
+      debug:
+        msg: 
+        - "Common webMethods Check_Service_Running tasks with params:"
+        - "pvar_inventory_hosts_pattern = {{ pvar_inventory_hosts_pattern | default('undefined') }}"
+        - "pvar_validation_ports = {{ pvar_validation_ports | default('undefined') }}"
+        - "pvar_validation_ports_timeout = {{ pvar_validation_ports_timeout | default('120', true) }}"
+        - "pvar_validation_ports_delay = {{ pvar_validation_ports_delay | default('0', true) }}"
+        verbosity: 1
+      tags:
+        - debug
+
+    - name: Wait for validation ports to become open on the host
+      wait_for:
+        host: "{{ pvar_validation_host }}"
+        port: "{{ item }}"
+        delay: "{{ pvar_validation_ports_delay | default('0', true) }}"
+        timeout: "{{ pvar_validation_ports_timeout | default('120', true) }}"
+      async: "{{ common_async_timeout }}"
+      poll: "{{ common_async_poll }}"
+      register: cmd_sleeper
+      with_items: "{{ pvar_validation_ports }}"
+      when: pvar_validation_ports is defined and (pvar_validation_ports|length > 0)
+
+    - name: Check status for the port validation task
+      async_status:
+        jid: "{{ item.ansible_job_id }}"
+      register: job_result
+      until: job_result.finished
+      retries: "{{ common_async_retries }}"
+      delay: "{{ common_async_delay }}"
+      with_items: "{{ cmd_sleeper.results }}"
+
+  tags:
+    - port_check
