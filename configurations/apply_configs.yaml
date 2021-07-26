@@ -10,23 +10,12 @@
       - "./vars/apigateway_envs.yaml"
       - "./vars/apigateway_configs.yaml"
 
-- name: Load vars
-  hosts: "{{ pvar_inventory_hosts_pattern }}"
-  tasks:
-    - name: Include all vars files
-      include_vars:
-        file: "{{ item }}"
-      with_fileglob: "{{ var_files }}"
-  tags:
-    - always
-
-
 ################################################################
 ## wait for service running
 ################################################################
 
 - name: Check the ports to ensure valid state
-  import_playbook: playbooks/ports_check.yaml
+  import_playbook: ports_check.yaml
   vars:
     pvar_inventory_hosts_pattern: local
     pvar_validation_host: "{{ vars_portscheck_host }}"
