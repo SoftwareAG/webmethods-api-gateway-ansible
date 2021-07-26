@@ -34,7 +34,6 @@
 
 - name: Setting Misc Apigateway Server configs via Apigateway Management REST APIs - runs only ONCE, against one of the server
   hosts: local
-  become: true
   run_once: true
   vars:
     apigateway_rest_protocol: "{{ vars_apigateway_rest_protocol }}"
