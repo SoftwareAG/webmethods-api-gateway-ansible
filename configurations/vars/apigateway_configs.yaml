@@ -58,7 +58,6 @@ vars_apigateway_usermgt_groups:
     empty_user_ids: false
     user_loginids_add:
       - "{{ vars_apigateway_usermgt_users_sample3_username }}"
-      - "{{ vars_apigateway_usermgt_users_loadrunner_username }}"
 
 ## access profiles 
 ## (note: the group names / user names will get replaced by their IDs in the real REST request, and merged with the userIds/groupIds fields)
@@ -230,29 +229,6 @@ vars_apigateway_packages:
 # the following attributes with "names/version" will be transformed to corresponding attributes of internal ids:
 # - custom_registerAPIsByFilter --> triggers the registration apis call
 vars_apigateway_applications:
-  - name: Load-runner Internal Client Application
-    description: The load runner app that perform api calls every few seconds to showcase the api statistics
-    version: "1.0"
-    custom_registerAPIsByFilter:
-      - name: "bookstore"
-        version: "1.0"
-      - name: "uszip"
-        version: "1.0"
-      - name: "covid"
-        version: "1.0"
-    contactEmails: []
-    siteURLs: []
-    identifiers:
-      - value:
-          - "{{ vars_apigateway_usermgt_users_loadrunner_username }}"
-        name: Username
-        key: httpBasicAuth
-    consumingAPIs: []
-    isSuspended: false
-    jsOrigins: []
-    authStrategyIds: []
-    restrictViewAsset: false
-    teams: []
   - name: Sample Bookstore Application
     description: Sample application needing access to the Bookstore APIs
     version: "1.0"
