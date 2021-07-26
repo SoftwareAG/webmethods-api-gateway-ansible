@@ -21,7 +21,7 @@ env_apigateway_configure_packages_publish_groups="true"
 
 # apigateway target
 env_apigateway_protocol="http"
-env_apigateway_host="dev"
+env_apigateway_host="internal_apigateway.hostname"
 env_apigateway_port="5555"
 
 ## rest login info
