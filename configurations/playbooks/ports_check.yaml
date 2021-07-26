@@ -14,12 +14,12 @@
     ## this is to make sure we gather the facts again as the user {{ cce_owner }} in order to get a valid {{ ansible_env.HOME }}
     - setup:
     
-    - name: Print the params for the common-webmethods-portscheck tasks
+    - name: Print the params
       debug:
         msg: 
         - "Common webMethods Check_Service_Running tasks with params:"
-        - "pvar_inventory_hosts_pattern = {{ pvar_inventory_hosts_pattern | default('undefined') }}"
-        - "pvar_validation_ports = {{ pvar_validation_ports | default('undefined') }}"
+        - "pvar_inventory_hosts_pattern = {{ pvar_inventory_hosts_pattern | default('undefined', true) }}"
+        - "pvar_validation_ports = {{ pvar_validation_ports | default('undefined', true) }}"
         - "pvar_validation_ports_timeout = {{ pvar_validation_ports_timeout | default('120', true) }}"
         - "pvar_validation_ports_delay = {{ pvar_validation_ports_delay | default('0', true) }}"
         verbosity: 1

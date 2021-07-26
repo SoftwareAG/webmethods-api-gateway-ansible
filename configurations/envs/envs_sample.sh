@@ -52,7 +52,7 @@ env_apigateway_portalgateway_version="1.0"
 env_apigateway_portalgateway_gateway_username="Administrator"
 env_apigateway_portalgateway_gateway_password="somethingnew"
 env_apigateway_portalgateway_gateway_url="http://internal_apigateway:5555"
-env_apigateway_portalgateway_portal_url="http://internal_apiportal:5555"
+env_apigateway_portalgateway_portal_url="http://internal_apiportal:18101"
 env_apigateway_portalgateway_portal_username="system"
 env_apigateway_portalgateway_portal_password="something"
 
