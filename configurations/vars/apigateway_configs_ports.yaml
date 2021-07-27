@@ -7,6 +7,7 @@ vars_apigateway_apigateway_ports_list:
       portAlias: SAGAlternatePort
       portDescription: HTTP Alternate port
       port: '5566'
+      bindAddress: "0.0.0.0"
       enable: 'yes'
       threadPool: 'true'
       minThread: 5
@@ -29,7 +30,7 @@ vars_apigateway_apigateway_ports_list:
       portAlias: WebsocketPort
       portDescription: Websocket Port
       port: '5577'
-      bindAddress: 0.0.0.0
+      bindAddress: "0.0.0.0"
       enable: 'yes'
       maxQueue: '200'
       idleTimeout: '60000'
@@ -44,8 +45,8 @@ vars_apigateway_apigateway_ports_list:
       hostsList: []
   - port_type: internal_http
     port_detail:
-      portAlias: InternalPort
-      portDescription: Internal port
+      portAlias: StdInternalPort
+      portDescription: Standalone Internal port
       port: '7777'
       proxyHost: test.com
       enable: 'yes'
@@ -70,7 +71,9 @@ vars_apigateway_apigateway_ports_list:
       portAlias: ExternalPort
       portDescription: External Port
       port: '1088'
-      bindAddress: 0.0.0.0
+      bindAddress: "0.0.0.0"
+      keepAliveTimeout: '20000'
+      maxQueue: '200'
       enable: 'yes'
       keyStore: ""
       alias: ""
@@ -80,8 +83,6 @@ vars_apigateway_apigateway_ports_list:
       maxThread: '5'
       threadPriority: '5'
       maxConnections: '5'
-      keepAliveTimeout: '20000'
-      maxQueue: '200'
       clientAuth: none
       krbJaasContext: ''
       krbClientPrincipal: ''
@@ -89,14 +90,13 @@ vars_apigateway_apigateway_ports_list:
       retype_krbClientPassword: ''
       krbServicePrincipalForm: username
       krbServicePrincipal: ''
-      internalListenerKey: "HTTPListener@1099@0.0.0.0"
+      internalListenerKey: ""
       addInternalPorts: {}
       internalPort: '1099'
       internalPortAlias: InternalPort_4ExternalPort
       internalPortDescription: Internal port used by external port
       internalEnable: 'yes'
       internalClientAuth: none
-      internalBindAddress: "0.0.0.0"
       internalPkg: WmRoot
       internalSsl: 'false'
       internalUseJSSE: 'false'
