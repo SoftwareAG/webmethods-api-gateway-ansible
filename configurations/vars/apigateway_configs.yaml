@@ -4,6 +4,9 @@
 vars_apigateway_rest_protocol: "{{ envvars_apigateway_protocol }}"
 vars_apigateway_rest_host: "{{ envvars_apigateway_host }}"
 vars_apigateway_rest_port: "{{ envvars_apigateway_port }}"
+vars_apigateway_rest_login_username: "{{ envvars_apigateway_rest_login_username }}"
+vars_apigateway_rest_login_password: "{{ envvars_apigateway_rest_login_password }}"
+vars_apigateway_rest_login_password_old: "{{ envvars_apigateway_rest_login_password_old }}"
 
 # apigateway portchecks configs
 vars_portscheck_host: "{{ envvars_apigateway_host }}"
