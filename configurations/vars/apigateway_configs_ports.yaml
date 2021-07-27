@@ -69,7 +69,7 @@ vars_apigateway_apigateway_ports_list:
     port_detail:
       portAlias: ExternalPort
       portDescription: External Port
-      port: '7788'
+      port: '8888'
       bindAddress: 0.0.0.0
       enable: 'yes'
       threadPool: 'true'
@@ -87,9 +87,9 @@ vars_apigateway_apigateway_ports_list:
       krbServicePrincipalForm: username
       krbServicePrincipal: ''
       addInternalPorts: {}
-      internalPort: '7777'
-      internalPortAlias: InternalPort
-      internalPortDescription: Internal port
+      internalPort: '8899'
+      internalPortAlias: InternalPort_4ExternalPort
+      internalPortDescription: Internal port used by external port
       internalEnable: 'yes'
       internalSsl: 'false'
       internalClientAuth: none
