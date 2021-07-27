@@ -90,11 +90,122 @@ vars_apigateway_usermgt_accessprofiles:
       usernames: []
       groupnames: []
 
-## apigateway custom port types
-vars_apigateway_ports_list: []
+## apigateway ports
+webmethods_apigateway_ports_list:
+  - port_type: regular_http
+    port_detail:
+      portAlias: SAGAlternatePort
+      portDescription: HTTP Alternate port
+      port: '6666'
+      enable: 'yes'
+      threadPool: 'true'
+      minThread: 5
+      maxThread: 20
+      threadPriority: 5
+      maxQueue: 200
+      keepAliveTimeout: 20000
+      clientAuth: none
+    access_mode:
+      accessMode: allow
+      pkg: WmRoot
+      port: ""
+      services: []
+    ip_access_mode:
+      ipAccessType: allow
+      pkg: WmRoot
+      hostsList: []
+  - port_type: internal_http
+    port_detail:
+      portAlias: InternalPort
+      portDescription: Internal port
+      port: '7777'
+      proxyHost: test.com
+      enable: 'yes'
+      threadPool: 'true'
+      minThread: '1'
+      maxThread: '5'
+      threadPriority: '5'
+      maxConnections: '5'
+      keepAliveTimeout: '20000'
+      clientAuth: none
+    access_mode:
+      accessMode: allow
+      pkg: WmRoot
+      port: ""
+      services: []
+    ip_access_mode:
+      ipAccessType: allow
+      pkg: WmRoot
+      hostsList: []
+  # - port_type: external_http
+  #   port_detail:
+  #     portAlias: ExternalPort
+  #     portDescription: External Port
+  #     port: '8888'
+  #     bindAddress: 0.0.0.0
+  #     enable: 'yes'
+  #     threadPool: 'true'
+  #     minThread: '1'
+  #     maxThread: '5'
+  #     threadPriority: '5'
+  #     maxConnections: '5'
+  #     keepAliveTimeout: '20000'
+  #     maxQueue: '200'
+  #     clientAuth: none
+  #     krbJaasContext: ''
+  #     krbClientPrincipal: ''
+  #     krbClientPassword: ''
+  #     retype_krbClientPassword: ''
+  #     krbServicePrincipalForm: username
+  #     krbServicePrincipal: ''
+  #     addInternalPorts: {}
+  #     internalPort: '7777'
+  #     internalPortAlias: InternalPort
+  #     internalPortDescription: test
+  #     internalEnable: 'yes'
+  #     internalSsl: 'false'
+  #     internalClientAuth: none
+  #     internalBindAddress: 0.0.0.0
+  #     internalPkg: WmRoot
+  #   access_mode:
+  #     accessMode: allow
+  #     pkg: WmRoot
+  #     port: ""
+  #     services: []
+  #   ip_access_mode:
+  #     ipAccessType: allow
+  #     pkg: WmRoot
+  #     hostsList: []
+  - port_type: websocket
+    port_detail:
+      portAlias: WebsocketPort
+      portDescription: Websocket Port
+      port: '7777'
+      bindAddress: 0.0.0.0
+      enable: 'yes'
+      maxQueue: '200'
+      idleTimeout: '60000'
+    access_mode:
+      accessMode: allow
+      pkg: WmRoot
+      port: ""
+      services: []
+    ip_access_mode:
+      ipAccessType: allow
+      pkg: WmRoot
+      hostsList: []
+
+## extended settings - is runtime settings (note: this must be run on all the nodes)
+webmethods_apigateway_extended_settings_isruntime_watt_keys:
+  watt.net.timeout: 400
+  watt.server.threadPool: 500
+  watt.server.threadPoolMin: 50
+  watt.server.control.serverThreadThreshold: 20
 
 ## extended settings - apigateway settings (note: this are replicated in the cluster)
-vars_apigateway_extended_settings_coregateway_extended_keys: {}
+webmethods_apigateway_extended_settings_coregateway_extended_keys:
+  maxAllowedZipFileSize: "50000000"
+  enableTeamWork: "true"
 
 ## api portal registration
 vars_apigateway_portalgateway:
@@ -115,16 +226,38 @@ vars_apigateway_portalgateway:
 
 ## api gateway promotion stages
 vars_apigateway_promotions_stages:
-  # - name: "{{ vars_apigateway_environment_stage }}"
-  #   description: "{{ vars_apigateway_environment_stage }} Stage"
-  #   url: "https://apigateway105-irsrepro.clouddemo.saggov.com"
-  #   username: "{{ webmethods_secrets_promotionsmgt_user }}"
-  #   password: "{{ webmethods_secrets_promotionsmgt_password }}"
-  #   keystoreAlias: "{{ webmethods_apigateway_keystore_name }}"
-  #   keyAlias: "{{ webmethods_apigateway_keystore_keyalias }}"
+  - name: "{{ vars_apigateway_environment_stage }}"
+    description: "{{ vars_apigateway_environment_stage }} Stage"
+    url: "{{ vars_apigateway_loadbalancers_http_urls }}"
+    username: "{{ vars_apigateway_rest_login_username }}"
+    password: "{{ vars_apigateway_rest_login_password }}"
+    # keystoreAlias: "{{ webmethods_apigateway_keystore_name }}"
+    # keyAlias: "{{ webmethods_apigateway_keystore_keyalias }}"
 
-## api gateway connectivity to ldap
-vars_apigateway_ldap_settings: {}
+## api gateway ldap registration
+var_apigateway_ldap_settings:
+  ldapConfig:
+    cacheSize: '10'
+    cacheTTL: '60'
+    provider: LDAP
+    ldapDirectoryList:
+    - index: 0
+      url: "{{ vars_apigateway_ldap_settings.url }}"
+      principal: "{{ vars_apigateway_ldap_settings.auth_username }}"
+      password: "{{ vars_apigateway_ldap_settings.auth_password }}"
+      timeout: '5'
+      poolMin: '0'
+      poolMax: '10'
+      useaf: false
+      dnPrefix:
+      dnSuffix:
+      uidProp: "{{ vars_apigateway_ldap_settings.users_id_attribute }}"
+      userRootDn: "{{ vars_apigateway_ldap_settings.users_root_dn }}"
+      useCaching: false
+      group: Everyone
+      memberAttribute: "{{ vars_apigateway_ldap_settings.groups_member_attribute }}"
+      groupIdProperty: "{{ vars_apigateway_ldap_settings.groups_id_attribute }}"
+      groupRootDN: "{{ vars_apigateway_ldap_settings.groups_root_dn }}"
 
 ## api gateway saml settings
 vars_apigateway_saml_settings: {}
@@ -317,7 +450,6 @@ vars_apigateway_packages_publish_groups:
         version: "1.0"
       - name: Swag Pack CovidReports
         version: "1.0"
-
 
 ## api packages to import into gateway
 vars_apigateway_archive_imports_from_s3:

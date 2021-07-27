@@ -91,3 +91,16 @@ vars_apigateway_portalgateway_portal_password: "{{ lookup('env', 'env_apigateway
 ## api endpoint aliases
 vars_apigateway_aliases_bookstore_endpoint: "{{ lookup('env', 'env_apigateway_aliases_bookstore_endpoint') | default('',true) }}"
 vars_apigateway_aliases_uszip_endpoint: "{{ lookup('env', 'env_apigateway_aliases_uszip_endpoint') | default('',true) }}"
+
+## LDAP settings
+## Careful: attribute names are sometimes case sensitive - make sure to use the right case to avoid issues.
+vars_apigateway_ldap_settings:
+  url: "ldap://directory.local:389"
+  auth_username: "ldapuser"
+  auth_password: "ldappassword"
+  users_root_dn: "OU=users,OU=Domain_Accounts,DC=directory,DC=local"
+  users_id_attribute: "userPrincipalName"
+  users_memberof_attribute: "memberOf"
+  groups_root_dn: "OU=groups,OU=Domain_Accounts,DC=directory,DC=local"
+  groups_id_attribute: "cn"
+  groups_member_attribute: "member"
