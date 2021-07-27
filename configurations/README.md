@@ -1,8 +1,13 @@
 # Configurations
 
+## Pre-requisite: API Gateway / API Portal
+
+To test the configurations playbook, you'll need a working and network accessible apigateway (and optionally an apiportal if you want to test the gateway to portal publishing)
+The versions tested are 10.5 and 10.7. 
+
 ## Load the env variables in the shell
 
-Create some ENVs files wigh the right configuration values. 
+Create some ENVs files with the right configuration values (TODO: detail the settings)
 A sample env var file is at "./envs/envs_sample1 "
 
 Then, load the vars in the shell with the following command (update the )
