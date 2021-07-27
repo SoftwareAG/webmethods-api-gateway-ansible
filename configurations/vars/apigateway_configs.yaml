@@ -192,7 +192,7 @@ vars_apigateway_apigateway_ports_list:
     port_detail:
       portAlias: WebsocketPort
       portDescription: Websocket Port
-      port: '7777'
+      port: '9999'
       bindAddress: 0.0.0.0
       enable: 'yes'
       maxQueue: '200'
