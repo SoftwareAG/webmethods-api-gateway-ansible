@@ -108,7 +108,7 @@ vars_apigateway_apigateway_ports_list:
     port_detail:
       portAlias: SAGAlternatePort
       portDescription: HTTP Alternate port
-      port: '6666'
+      port: '5566'
       enable: 'yes'
       threadPool: 'true'
       minThread: 5
@@ -117,6 +117,24 @@ vars_apigateway_apigateway_ports_list:
       maxQueue: 200
       keepAliveTimeout: 20000
       clientAuth: none
+    access_mode:
+      accessMode: allow
+      pkg: WmRoot
+      port: ""
+      services: []
+    ip_access_mode:
+      ipAccessType: allow
+      pkg: WmRoot
+      hostsList: []
+  - port_type: websocket
+    port_detail:
+      portAlias: WebsocketPort
+      portDescription: Websocket Port
+      port: '5577'
+      bindAddress: 0.0.0.0
+      enable: 'yes'
+      maxQueue: '200'
+      idleTimeout: '60000'
     access_mode:
       accessMode: allow
       pkg: WmRoot
@@ -153,7 +171,7 @@ vars_apigateway_apigateway_ports_list:
   #   port_detail:
   #     portAlias: ExternalPort
   #     portDescription: External Port
-  #     port: '8888'
+  #     port: '7788'
   #     bindAddress: 0.0.0.0
   #     enable: 'yes'
   #     threadPool: 'true'
@@ -188,24 +206,6 @@ vars_apigateway_apigateway_ports_list:
   #     ipAccessType: allow
   #     pkg: WmRoot
   #     hostsList: []
-  - port_type: websocket
-    port_detail:
-      portAlias: WebsocketPort
-      portDescription: Websocket Port
-      port: '9999'
-      bindAddress: 0.0.0.0
-      enable: 'yes'
-      maxQueue: '200'
-      idleTimeout: '60000'
-    access_mode:
-      accessMode: allow
-      pkg: WmRoot
-      port: ""
-      services: []
-    ip_access_mode:
-      ipAccessType: allow
-      pkg: WmRoot
-      hostsList: []
 
 ## extended settings - is runtime settings (note: this must be run on all the nodes)
 vars_apigateway_apigateway_extended_settings_isruntime_watt_keys:
