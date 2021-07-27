@@ -94,7 +94,7 @@ vars_apigateway_usermgt_accessprofiles:
       groupnames: []
 
 ## apigateway ports
-webmethods_apigateway_ports_list:
+vars_apigateway_apigateway_ports_list:
   - port_type: regular_http
     port_detail:
       portAlias: SAGAlternatePort
@@ -199,14 +199,14 @@ webmethods_apigateway_ports_list:
       hostsList: []
 
 ## extended settings - is runtime settings (note: this must be run on all the nodes)
-webmethods_apigateway_extended_settings_isruntime_watt_keys:
+vars_apigateway_apigateway_extended_settings_isruntime_watt_keys:
   watt.net.timeout: 400
   watt.server.threadPool: 500
   watt.server.threadPoolMin: 50
   watt.server.control.serverThreadThreshold: 20
 
 ## extended settings - apigateway settings (note: this are replicated in the cluster)
-webmethods_apigateway_extended_settings_coregateway_extended_keys:
+vars_apigateway_extended_settings_coregateway_extended_keys:
   maxAllowedZipFileSize: "50000000"
   enableTeamWork: "true"
 
@@ -238,7 +238,7 @@ vars_apigateway_promotions_stages:
     # keyAlias: "{{ webmethods_apigateway_keystore_keyalias }}"
 
 ## api gateway ldap registration
-var_apigateway_ldap_settings:
+vars_apigateway_ldap_settings:
   ldapConfig:
     cacheSize: '10'
     cacheTTL: '60'
