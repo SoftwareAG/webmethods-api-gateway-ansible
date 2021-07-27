@@ -7,6 +7,7 @@ vars_apigateway_apigateway_ports_list:
       portAlias: SAGAlternatePort
       portDescription: HTTP Alternate port
       port: '5566'
+      bindAddress: "0.0.0.0"
       enable: 'yes'
       threadPool: 'true'
       minThread: 5
@@ -29,7 +30,7 @@ vars_apigateway_apigateway_ports_list:
       portAlias: WebsocketPort
       portDescription: Websocket Port
       port: '5577'
-      bindAddress: 0.0.0.0
+      bindAddress: "0.0.0.0"
       enable: 'yes'
       maxQueue: '200'
       idleTimeout: '60000'
@@ -70,18 +71,18 @@ vars_apigateway_apigateway_ports_list:
       portAlias: ExternalPort
       portDescription: External Port
       port: '1088'
-      bindAddress: 0.0.0.0
+      bindAddress: "0.0.0.0"
       enable: 'yes'
       keyStore: ""
       alias: ""
       trustStore: ""
       threadPool: 'false'
-      # minThread: '1'
-      # maxThread: '5'
-      # threadPriority: '5'
-      # maxConnections: '5'
-      # keepAliveTimeout: '20000'
-      # maxQueue: '200'
+      minThread: '1'
+      maxThread: '5'
+      threadPriority: '5'
+      maxConnections: '5'
+      keepAliveTimeout: '20000'
+      maxQueue: '200'
       clientAuth: none
       krbJaasContext: ''
       krbClientPrincipal: ''
@@ -96,19 +97,19 @@ vars_apigateway_apigateway_ports_list:
       internalPortDescription: Internal port used by external port
       internalEnable: 'yes'
       internalClientAuth: none
-      internalBindAddress: "0.0.0.0"
+      internalBindAddress: ""
       internalPkg: WmRoot
       internalSsl: 'false'
       internalUseJSSE: 'false'
       internalalias: ""
       internalkeyStore: ""
       internaltrustStore: ""
-    # access_mode:
-    #   accessMode: allow
-    #   pkg: WmRoot
-    #   port: ""
-    #   services: []
-    # ip_access_mode:
-    #   ipAccessType: allow
-    #   pkg: WmRoot
-    #   hostsList: []
+    access_mode:
+      accessMode: allow
+      pkg: WmRoot
+      port: ""
+      services: []
+    ip_access_mode:
+      ipAccessType: allow
+      pkg: WmRoot
+      hostsList: []
