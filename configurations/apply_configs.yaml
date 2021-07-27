@@ -143,17 +143,6 @@
 
     - include_role:
         name: configure-apigateway
-        apply:
-          ignore_errors: yes
-      vars:
-        configs_action: set-apiportal-connect
-        configs_enabled: "{{ vars_apigateway_portalgateway_enabled }}"
-        webmethods_apigateway_portalgateway: "{{ vars_apigateway_portalgateway }}"
-      tags:
-        - configs_apiportal_connect
-
-    - include_role:
-        name: configure-apigateway
       vars:
         configs_action: set-promotion-stages
         configs_enabled: "{{ vars_apigateway_promotions_stages_enabled }}"
@@ -224,8 +213,22 @@
       tags:
         - configs_packages
 
+    ## This section is for API Portal connections and publishing
     - include_role:
         name: configure-apigateway
+        apply:
+          ignore_errors: yes
+      vars:
+        configs_action: set-apiportal-connect
+        configs_enabled: "{{ vars_apigateway_portalgateway_enabled }}"
+        webmethods_apigateway_portalgateway: "{{ vars_apigateway_portalgateway }}"
+      tags:
+        - configs_apiportal_connect
+
+    - include_role:
+        name: configure-apigateway
+        apply:
+          ignore_errors: yes
       vars:
         configs_action: publish-apis-groups
         configs_enabled: "{{ vars_apigateway_apis_publish_groups_enabled }}"
@@ -235,6 +238,8 @@
 
     - include_role:
         name: configure-apigateway
+        apply:
+          ignore_errors: yes
       vars:
         configs_action: publish-packages-groups
         configs_enabled: "{{ vars_apigateway_packages_publish_groups_enabled }}"
