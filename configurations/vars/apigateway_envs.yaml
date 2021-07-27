@@ -46,12 +46,9 @@ envvars_apigateway_usermgt_users_sample3_username: "sampleuser3.apiuser"
 envvars_apigateway_usermgt_users_sample3_password: "{{ lookup('env', 'env_apigateway_users_sample3_password') | default('changeme',true) }}"
 
 ## apigateway load balancer envs
-envvars_apigateway_loadbalancers_http_urls:
-  - "{{ lookup('env', 'env_apigateway_lb_http_url') | default('http://external_api_access',true) }}"
-envvars_apigateway_loadbalancers_https_urls:
-  - "{{ lookup('env', 'env_apigateway_lb_https_url') | default('https://external_api_access',true) }}"
-envvars_apigateway_loadbalancers_websocket_urls:
-  - "{{ lookup('env', 'env_apigateway_lb_websocket_url') | default('',true) }}"
+envvars_apigateway_loadbalancers_http_urls: "{{ lookup('env', 'env_apigateway_lb_http_url') | default('http://external_api_access',true) }}"
+envvars_apigateway_loadbalancers_https_urls: "{{ lookup('env', 'env_apigateway_lb_https_url') | default('https://external_api_access',true) }}"
+envvars_apigateway_loadbalancers_websocket_urls: "{{ lookup('env', 'env_apigateway_lb_websocket_url') | default('',true) }}"
 envvars_apigateway_loadbalancers_webapp_url: "{{ lookup('env', 'env_apigateway_lb_webapp_url') | default('https://external_webapp',true) }}"
 
 ## api gateway portal registration

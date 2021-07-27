@@ -14,6 +14,15 @@ vars_portscheck_ports:
   - "{{ envvars_apigateway_port }}"
 vars_portscheck_ports_timeout: 900
 
+# load balancer urls
+vars_apigateway_loadbalancers_http_urls:
+  - "{{ envvars_apigateway_loadbalancers_http_urls }}"
+vars_apigateway_loadbalancers_https_urls:
+  - "{{ envvars_apigateway_loadbalancers_https_urls }}"
+vars_apigateway_loadbalancers_websocket_urls:
+  - "{{ envvars_apigateway_loadbalancers_websocket_urls }}"
+vars_apigateway_loadbalancers_webapp_url: "{{ envvars_apigateway_loadbalancers_webapp_url }}"
+
 # local users
 vars_apigateway_usermgt_users:
   - loginId: "{{ envvars_apigateway_usermgt_users_sample1_username }}"
