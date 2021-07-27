@@ -65,42 +65,42 @@ vars_apigateway_apigateway_ports_list:
       ipAccessType: allow
       pkg: WmRoot
       hostsList: []
-  # - port_type: external_http
-  #   port_detail:
-  #     portAlias: ExternalPort
-  #     portDescription: External Port
-  #     port: '7788'
-  #     bindAddress: 0.0.0.0
-  #     enable: 'yes'
-  #     threadPool: 'true'
-  #     minThread: '1'
-  #     maxThread: '5'
-  #     threadPriority: '5'
-  #     maxConnections: '5'
-  #     keepAliveTimeout: '20000'
-  #     maxQueue: '200'
-  #     clientAuth: none
-  #     krbJaasContext: ''
-  #     krbClientPrincipal: ''
-  #     krbClientPassword: ''
-  #     retype_krbClientPassword: ''
-  #     krbServicePrincipalForm: username
-  #     krbServicePrincipal: ''
-  #     addInternalPorts: {}
-  #     internalPort: '7777'
-  #     internalPortAlias: InternalPort
-  #     internalPortDescription: test
-  #     internalEnable: 'yes'
-  #     internalSsl: 'false'
-  #     internalClientAuth: none
-  #     internalBindAddress: 0.0.0.0
-  #     internalPkg: WmRoot
-  #   access_mode:
-  #     accessMode: allow
-  #     pkg: WmRoot
-  #     port: ""
-  #     services: []
-  #   ip_access_mode:
-  #     ipAccessType: allow
-  #     pkg: WmRoot
-  #     hostsList: []
+  - port_type: external_http
+    port_detail:
+      portAlias: ExternalPort
+      portDescription: External Port
+      port: '7788'
+      bindAddress: 0.0.0.0
+      enable: 'yes'
+      threadPool: 'true'
+      minThread: '1'
+      maxThread: '5'
+      threadPriority: '5'
+      maxConnections: '5'
+      keepAliveTimeout: '20000'
+      maxQueue: '200'
+      clientAuth: none
+      krbJaasContext: ''
+      krbClientPrincipal: ''
+      krbClientPassword: ''
+      retype_krbClientPassword: ''
+      krbServicePrincipalForm: username
+      krbServicePrincipal: ''
+      addInternalPorts: {}
+      internalPort: '7777'
+      internalPortAlias: InternalPort
+      internalPortDescription: Internal port
+      internalEnable: 'yes'
+      internalSsl: 'false'
+      internalClientAuth: none
+      internalBindAddress: 0.0.0.0
+      internalPkg: WmRoot
+    access_mode:
+      accessMode: allow
+      pkg: WmRoot
+      port: ""
+      services: []
+    ip_access_mode:
+      ipAccessType: allow
+      pkg: WmRoot
+      hostsList: []
