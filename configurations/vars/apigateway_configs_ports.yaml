@@ -97,7 +97,6 @@ vars_apigateway_apigateway_ports_list:
       internalPortDescription: Internal port used by external port
       internalEnable: 'yes'
       internalClientAuth: none
-      internalBindAddress: ""
       internalPkg: WmRoot
       internalSsl: 'false'
       internalUseJSSE: 'false'
