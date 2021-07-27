@@ -5,6 +5,26 @@
 To test the configurations playbook, you'll need a working and network accessible apigateway (and optionally an apiportal if you want to test the gateway to portal publishing)
 The versions tested are 10.5 and 10.7. 
 
+## Implemented configuration items
+
+Here are the current configuration items implemented by this project:
+ - update admin password
+ - create users
+ - create groups and assign the users
+ - create teams and assign the groups
+ - set extended settings
+ - set ldap
+ - set loadbalancer urls
+ - set promotion stages
+ - import apigateway archive (from s3)
+ - set api plans
+ - set api packages
+ - set aliases
+ - set api applications
+ - set apiportal destination
+ - publish apis to apiportal
+ - publish api packages to apiportal
+
 ## Load the env variables in the shell
 
 Create some ENVs files with the right configuration values (TODO: detail the settings)

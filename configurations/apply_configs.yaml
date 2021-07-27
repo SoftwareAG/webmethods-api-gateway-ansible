@@ -148,24 +148,6 @@
     - include_role:
         name: configure-apigateway
       vars:
-        configs_action: set-plans
-        configs_enabled: "{{ envvars_apigateway_plans_enabled }}"
-        rvar_apigateway_plans: "{{ vars_apigateway_plans }}"
-      tags:
-        - configs_plans
-
-    - include_role:
-        name: configure-apigateway
-      vars:
-        configs_action: set-packages
-        configs_enabled: "{{ envvars_apigateway_packages_enabled }}"
-        rvar_apigateway_packages: "{{ vars_apigateway_packages }}"
-      tags:
-        - configs_packages
-
-    - include_role:
-        name: configure-apigateway
-      vars:
         configs_action: set-aliases
         configs_enabled: "{{ envvars_apigateway_aliases_enabled }}"
         rvar_apigateway_aliases: "{{ vars_apigateway_aliases }}"
