@@ -3,7 +3,7 @@ A sample project that demonstrates how to use the Ansible roles to install and c
 
 # Authors
 Fabien Sanglier
-- Emails: [@Software AG](mailto:fabien.sanglier@softwareag.com) [@Software AG Government Solutions](mailto:fabien.sanglier@softwareaggov.com)
+- Emails: [@Software AG](mailto:fabien.sanglier@softwareag.com) // [@Software AG Government Solutions](mailto:fabien.sanglier@softwareaggov.com)
 - Github: 
   - [Fabien Sanglier](https://github.com/lanimall)
   - [Fabien Sanglier @ SoftwareAG Government Solutions](https://github.com/fabien-sanglier-saggs)
