@@ -78,6 +78,15 @@
         - debug: var=vars_apigateway_plans_enabled verbosity=3
         - debug: var=vars_apigateway_packages_enabled verbosity=3
       tags: always
+   
+    - import_role:
+        name: configure-apigateway
+      vars:
+        configs_action: set-ports
+        configs_enabled: "{{ envvars_apigateway_ports_enabled }}"
+        webmethods_apigateway_ports_list: "{{ vars_apigateway_apigateway_ports_list }}"
+      tags:
+        - configs_ports
 
     - include_role:
         name: configure-apigateway

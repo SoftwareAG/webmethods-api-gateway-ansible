@@ -4,8 +4,6 @@ env_apigateway_stage="dev"
 
 # the flags to enable/disable the config item
 env_apigateway_configure_usermgt="true"
-env_apigateway_configure_portalgateway="true"
-env_apigateway_configure_archives="true"
 env_apigateway_configure_aliases="true"
 env_apigateway_configure_ports="true"
 env_apigateway_configure_ldap="true"
@@ -16,6 +14,8 @@ env_apigateway_configure_extended_settings="true"
 env_apigateway_configure_plans="true"
 env_apigateway_configure_packages="true"
 env_apigateway_configure_applications="true"
+env_apigateway_configure_archives="true"
+env_apigateway_configure_portalgateway="true"
 env_apigateway_configure_apis_publish_groups="true"
 env_apigateway_configure_packages_publish_groups="true"
 
