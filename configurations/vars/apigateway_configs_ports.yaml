@@ -45,8 +45,8 @@ vars_apigateway_apigateway_ports_list:
       hostsList: []
   - port_type: internal_http
     port_detail:
-      portAlias: InternalPort
-      portDescription: Internal port
+      portAlias: StdInternalPort
+      portDescription: Standalone Internal port
       port: '7777'
       proxyHost: test.com
       enable: 'yes'
@@ -72,17 +72,17 @@ vars_apigateway_apigateway_ports_list:
       portDescription: External Port
       port: '1088'
       bindAddress: "0.0.0.0"
+      keepAliveTimeout: '20000'
+      maxQueue: '200'
       enable: 'yes'
       keyStore: ""
       alias: ""
       trustStore: ""
-      threadPool: 'false'
+      threadPool: 'true'
       minThread: '1'
       maxThread: '5'
       threadPriority: '5'
       maxConnections: '5'
-      keepAliveTimeout: '20000'
-      maxQueue: '200'
       clientAuth: none
       krbJaasContext: ''
       krbClientPrincipal: ''
