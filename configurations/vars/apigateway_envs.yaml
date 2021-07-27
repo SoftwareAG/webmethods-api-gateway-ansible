@@ -1,106 +1,80 @@
-## Environment variables supported:
-# env_apigateway_protocol
-# env_apigateway_host
-# env_apigateway_port
-# env_apigateway_rest_user
-# env_apigateway_rest_password
-# env_apigateway_rest_password_old
-# env_apigateway_lb_http_url
-# env_apigateway_lb_https_url
-# env_apigateway_lb_websocket_url
-# env_apigateway_lb_webapp_url
-# env_apigateway_stage
-# env_apigateway_portalgateway_gateway_url
-# env_apigateway_portalgateway_gateway_username
-# env_apigateway_portalgateway_gateway_password
-# env_apigateway_portalgateway_portal_url
-# env_apigateway_portalgateway_portal_username
-# env_apigateway_portalgateway_portal_password
-# env_apigateway_configure_usermgt
-# env_apigateway_configure_portalgateway
-# env_apigateway_configure_archives
-# env_apigateway_configure_aliases
-# env_apigateway_configure_ports
-# env_apigateway_configure_ldap
-# env_apigateway_configure_saml
-# env_apigateway_configure_lb
-# env_apigateway_configure_promotions_stages
-# env_apigateway_configure_extended_settings
+################################################################
+## All the variables loaded from server environment variables
+################################################################
 
 # enable / disable the config items
-env_vars_cleanup_regex: '[''"]'
-vars_apigateway_usermgt_enabled: "{{ lookup('env', 'env_apigateway_configure_usermgt') | default('false',true) | regex_replace(env_vars_cleanup_regex,'') }}"
-vars_apigateway_portalgateway_enabled: "{{ lookup('env', 'env_apigateway_configure_portalgateway') | default('false',true) | regex_replace(env_vars_cleanup_regex,'') }}"
-vars_apigateway_archive_imports_enabled: "{{ lookup('env', 'env_apigateway_configure_archives') | default('false',true) | regex_replace(env_vars_cleanup_regex,'') }}"
-vars_apigateway_aliases_enabled: "{{ lookup('env', 'env_apigateway_configure_aliases') | default('false',true) | regex_replace(env_vars_cleanup_regex,'') }}"
-vars_apigateway_ports_enabled: "{{ lookup('env', 'env_apigateway_configure_ports') | default('false',true) | regex_replace(env_vars_cleanup_regex,'') }}"
-vars_apigateway_ldap_enabled: "{{ lookup('env', 'env_apigateway_configure_ldap') | default('false',true) | regex_replace(env_vars_cleanup_regex,'') }}"
-vars_apigateway_saml_enabled: "{{ lookup('env', 'env_apigateway_configure_saml') | default('false',true) | regex_replace(env_vars_cleanup_regex,'') }}"
-vars_apigateway_loadbalancer_enabled: "{{ lookup('env', 'env_apigateway_configure_lb') | default('false',true) | regex_replace(env_vars_cleanup_regex,'') }}"
-vars_apigateway_promotions_stages_enabled: "{{ lookup('env', 'env_apigateway_configure_promotions_stages') | default('false',true) | regex_replace(env_vars_cleanup_regex,'') }}"
-vars_apigateway_extended_settings_enabled: "{{ lookup('env', 'env_apigateway_configure_extended_settings') | default('false',true) | regex_replace(env_vars_cleanup_regex,'') }}"
-vars_apigateway_plans_enabled: "{{ lookup('env', 'env_apigateway_configure_plans') | default('false',true) | regex_replace(env_vars_cleanup_regex,'') }}"
-vars_apigateway_packages_enabled: "{{ lookup('env', 'env_apigateway_configure_packages') | default('false',true) | regex_replace(env_vars_cleanup_regex,'') }}"
-vars_apigateway_applications_enabled: "{{ lookup('env', 'env_apigateway_configure_applications') | default('false',true) | regex_replace(env_vars_cleanup_regex,'') }}"
-vars_apigateway_apis_publish_groups_enabled: "{{ lookup('env', 'env_apigateway_configure_apis_publish_groups') | default('false',true) | regex_replace(env_vars_cleanup_regex,'') }}"
-vars_apigateway_packages_publish_groups_enabled: "{{ lookup('env', 'env_apigateway_configure_packages_publish_groups') | default('false',true) | regex_replace(env_vars_cleanup_regex,'') }}"
+envvars_cleanup_regex: '[''"]'
+envvars_apigateway_usermgt_enabled: "{{ lookup('env', 'env_apigateway_configure_usermgt') | default('false',true) | regex_replace(envvars_cleanup_regex,'') }}"
+envvars_apigateway_portalgateway_enabled: "{{ lookup('env', 'env_apigateway_configure_portalgateway') | default('false',true) | regex_replace(envvars_cleanup_regex,'') }}"
+envvars_apigateway_archive_imports_enabled: "{{ lookup('env', 'env_apigateway_configure_archives') | default('false',true) | regex_replace(envvars_cleanup_regex,'') }}"
+envvars_apigateway_aliases_enabled: "{{ lookup('env', 'env_apigateway_configure_aliases') | default('false',true) | regex_replace(envvars_cleanup_regex,'') }}"
+envvars_apigateway_ports_enabled: "{{ lookup('env', 'env_apigateway_configure_ports') | default('false',true) | regex_replace(envvars_cleanup_regex,'') }}"
+envvars_apigateway_ldap_enabled: "{{ lookup('env', 'env_apigateway_configure_ldap') | default('false',true) | regex_replace(envvars_cleanup_regex,'') }}"
+envvars_apigateway_saml_enabled: "{{ lookup('env', 'env_apigateway_configure_saml') | default('false',true) | regex_replace(envvars_cleanup_regex,'') }}"
+envvars_apigateway_loadbalancer_enabled: "{{ lookup('env', 'env_apigateway_configure_lb') | default('false',true) | regex_replace(envvars_cleanup_regex,'') }}"
+envvars_apigateway_promotions_stages_enabled: "{{ lookup('env', 'env_apigateway_configure_promotions_stages') | default('false',true) | regex_replace(envvars_cleanup_regex,'') }}"
+envvars_apigateway_extended_settings_enabled: "{{ lookup('env', 'env_apigateway_configure_extended_settings') | default('false',true) | regex_replace(envvars_cleanup_regex,'') }}"
+envvars_apigateway_plans_enabled: "{{ lookup('env', 'env_apigateway_configure_plans') | default('false',true) | regex_replace(envvars_cleanup_regex,'') }}"
+envvars_apigateway_packages_enabled: "{{ lookup('env', 'env_apigateway_configure_packages') | default('false',true) | regex_replace(envvars_cleanup_regex,'') }}"
+envvars_apigateway_applications_enabled: "{{ lookup('env', 'env_apigateway_configure_applications') | default('false',true) | regex_replace(envvars_cleanup_regex,'') }}"
+envvars_apigateway_apis_publish_groups_enabled: "{{ lookup('env', 'env_apigateway_configure_apis_publish_groups') | default('false',true) | regex_replace(envvars_cleanup_regex,'') }}"
+envvars_apigateway_packages_publish_groups_enabled: "{{ lookup('env', 'env_apigateway_configure_packages_publish_groups') | default('false',true) | regex_replace(envvars_cleanup_regex,'') }}"
 
 ## aws s3 repo artifacts
-vars_apigateway_aws_s3_bucket: "{{ lookup('env', 'env_apigateway_aws_s3_bucket') | default('',true) }}"
-vars_apigateway_aws_s3_bucket_prefix: "{{ lookup('env', 'env_apigateway_aws_s3_bucket_prefix') | default('',true) }}"
+envvars_apigateway_aws_s3_bucket: "{{ lookup('env', 'env_apigateway_aws_s3_bucket') | default('',true) }}"
+envvars_apigateway_aws_s3_bucket_prefix: "{{ lookup('env', 'env_apigateway_aws_s3_bucket_prefix') | default('',true) }}"
 
 # the env stage (ie. dev, test, staging, prod)
-vars_apigateway_environment_stage: "{{ lookup('env', 'env_apigateway_stage') | default('dev',true) }}"
+envvars_apigateway_environment_stage: "{{ lookup('env', 'env_apigateway_stage') | default('dev',true) }}"
 
 # apigateway target for internal REST calls
-vars_apigateway_protocol: "{{ lookup('env', 'env_apigateway_protocol') | default('',true) }}"
-vars_apigateway_host: "{{ lookup('env', 'env_apigateway_host') | default('',true) }}"
-vars_apigateway_port: "{{ lookup('env', 'env_apigateway_port') | default('',true) }}"
+envvars_apigateway_protocol: "{{ lookup('env', 'env_apigateway_protocol') | default('',true) }}"
+envvars_apigateway_host: "{{ lookup('env', 'env_apigateway_host') | default('',true) }}"
+envvars_apigateway_port: "{{ lookup('env', 'env_apigateway_port') | default('',true) }}"
 
 ## apigateway login info for internal REST calls
-vars_apigateway_rest_login_username: "{{ lookup('env', 'env_apigateway_rest_user') }}"
-vars_apigateway_rest_login_password: "{{ lookup('env', 'env_apigateway_rest_password') }}"
-vars_apigateway_rest_login_password_old: "{{ lookup('env', 'env_apigateway_rest_password_old') }}"
+envvars_apigateway_rest_login_username: "{{ lookup('env', 'env_apigateway_rest_user') }}"
+envvars_apigateway_rest_login_password: "{{ lookup('env', 'env_apigateway_rest_password') }}"
+envvars_apigateway_rest_login_password_old: "{{ lookup('env', 'env_apigateway_rest_password_old') }}"
 
 ## local sample users
-vars_apigateway_usermgt_users_sample1_username: "sampleuser1.apiadmin"
-vars_apigateway_usermgt_users_sample1_password: "{{ lookup('env', 'env_apigateway_users_sample1_password') | default('changeme',true) }}"
-vars_apigateway_usermgt_users_sample2_username: "sampleuser2.apiprovider"
-vars_apigateway_usermgt_users_sample2_password: "{{ lookup('env', 'env_apigateway_users_sample2_password') | default('changeme',true) }}"
-vars_apigateway_usermgt_users_sample3_username: "sampleuser3.apiuser"
-vars_apigateway_usermgt_users_sample3_password: "{{ lookup('env', 'env_apigateway_users_sample3_password') | default('changeme',true) }}"
+envvars_apigateway_usermgt_users_sample1_username: "sampleuser1.apiadmin"
+envvars_apigateway_usermgt_users_sample1_password: "{{ lookup('env', 'env_apigateway_users_sample1_password') | default('changeme',true) }}"
+envvars_apigateway_usermgt_users_sample2_username: "sampleuser2.apiprovider"
+envvars_apigateway_usermgt_users_sample2_password: "{{ lookup('env', 'env_apigateway_users_sample2_password') | default('changeme',true) }}"
+envvars_apigateway_usermgt_users_sample3_username: "sampleuser3.apiuser"
+envvars_apigateway_usermgt_users_sample3_password: "{{ lookup('env', 'env_apigateway_users_sample3_password') | default('changeme',true) }}"
 
 ## apigateway load balancer envs
-vars_apigateway_loadbalancers_http_urls:
+envvars_apigateway_loadbalancers_http_urls:
   - "{{ lookup('env', 'env_apigateway_lb_http_url') | default('http://external_api_access',true) }}"
-vars_apigateway_loadbalancers_https_urls:
+envvars_apigateway_loadbalancers_https_urls:
   - "{{ lookup('env', 'env_apigateway_lb_https_url') | default('https://external_api_access',true) }}"
-vars_apigateway_loadbalancers_websocket_urls:
+envvars_apigateway_loadbalancers_websocket_urls:
   - "{{ lookup('env', 'env_apigateway_lb_websocket_url') | default('',true) }}"
-vars_apigateway_loadbalancers_webapp_url: "{{ lookup('env', 'env_apigateway_lb_webapp_url') | default('https://external_webapp',true) }}"
+envvars_apigateway_loadbalancers_webapp_url: "{{ lookup('env', 'env_apigateway_lb_webapp_url') | default('https://external_webapp',true) }}"
 
 ## api gateway portal registration
-vars_apigateway_portalgateway_version: "{{ lookup('env', 'env_apigateway_portalgateway_version') | default('1.0',true) }}"
-vars_apigateway_portalgateway_gateway_username: "{{ lookup('env', 'env_apigateway_portalgateway_gateway_username') | default('',true) }}"
-vars_apigateway_portalgateway_gateway_password: "{{ lookup('env', 'env_apigateway_portalgateway_gateway_password') | default('',true) }}"
-vars_apigateway_portalgateway_gateway_url: "{{ lookup('env', 'env_apigateway_portalgateway_gateway_url') | default('',true) }}"
-vars_apigateway_portalgateway_portal_url: "{{ lookup('env', 'env_apigateway_portalgateway_portal_url') | default('',true) }}"
-vars_apigateway_portalgateway_portal_username: "{{ lookup('env', 'env_apigateway_portalgateway_portal_username') | default('',true) }}"
-vars_apigateway_portalgateway_portal_password: "{{ lookup('env', 'env_apigateway_portalgateway_portal_password') | default('',true) }}"
+envvars_apigateway_portalgateway_version: "{{ lookup('env', 'env_apigateway_portalgateway_version') | default('1.0',true) }}"
+envvars_apigateway_portalgateway_gateway_username: "{{ lookup('env', 'env_apigateway_portalgateway_gateway_username') | default('',true) }}"
+envvars_apigateway_portalgateway_gateway_password: "{{ lookup('env', 'env_apigateway_portalgateway_gateway_password') | default('',true) }}"
+envvars_apigateway_portalgateway_gateway_url: "{{ lookup('env', 'env_apigateway_portalgateway_gateway_url') | default('',true) }}"
+envvars_apigateway_portalgateway_portal_url: "{{ lookup('env', 'env_apigateway_portalgateway_portal_url') | default('',true) }}"
+envvars_apigateway_portalgateway_portal_username: "{{ lookup('env', 'env_apigateway_portalgateway_portal_username') | default('',true) }}"
+envvars_apigateway_portalgateway_portal_password: "{{ lookup('env', 'env_apigateway_portalgateway_portal_password') | default('',true) }}"
 
 ## api endpoint aliases
-vars_apigateway_aliases_bookstore_endpoint: "{{ lookup('env', 'env_apigateway_aliases_bookstore_endpoint') | default('',true) }}"
-vars_apigateway_aliases_uszip_endpoint: "{{ lookup('env', 'env_apigateway_aliases_uszip_endpoint') | default('',true) }}"
+envvars_apigateway_aliases_bookstore_endpoint: "{{ lookup('env', 'env_apigateway_aliases_bookstore_endpoint') | default('',true) }}"
+envvars_apigateway_aliases_uszip_endpoint: "{{ lookup('env', 'env_apigateway_aliases_uszip_endpoint') | default('',true) }}"
 
 ## LDAP settings
 ## Careful: attribute names are sometimes case sensitive - make sure to use the right case to avoid issues.
-vars_apigateway_ldap_settings:
-  url: "ldap://directory.local:389"
-  auth_username: "ldapuser"
-  auth_password: "ldappassword"
-  users_root_dn: "OU=users,OU=Domain_Accounts,DC=directory,DC=local"
-  users_id_attribute: "userPrincipalName"
-  users_memberof_attribute: "memberOf"
-  groups_root_dn: "OU=groups,OU=Domain_Accounts,DC=directory,DC=local"
-  groups_id_attribute: "cn"
-  groups_member_attribute: "member"
+envvars_apigateway_ldap_url: "ldap://directory.local:389"
+envvars_apigateway_ldap_auth_username: "ldapuser"
+envvars_apigateway_ldap_auth_password: "ldappassword"
+envvars_apigateway_ldap_users_root_dn: "OU=users,OU=Domain_Accounts,DC=directory,DC=local"
+envvars_apigateway_ldap_users_id_attribute: "userPrincipalName"
+envvars_apigateway_ldap_users_memberof_attribute: "memberOf"
+envvars_apigateway_ldap_groups_root_dn: "OU=groups,OU=Domain_Accounts,DC=directory,DC=local"
+envvars_apigateway_ldap_groups_id_attribute: "cn"
+envvars_apigateway_ldap_groups_member_attribute: "member"

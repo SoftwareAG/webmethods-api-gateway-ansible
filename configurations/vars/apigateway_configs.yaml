@@ -1,42 +1,42 @@
 ---
 
 # apigateway REST access configs
-vars_apigateway_rest_protocol: "{{ vars_apigateway_protocol }}"
-vars_apigateway_rest_host: "{{ vars_apigateway_host }}"
-vars_apigateway_rest_port: "{{ vars_apigateway_port }}"
+vars_apigateway_rest_protocol: "{{ envvars_apigateway_protocol }}"
+vars_apigateway_rest_host: "{{ envvars_apigateway_host }}"
+vars_apigateway_rest_port: "{{ envvars_apigateway_port }}"
 
 # apigateway portchecks configs
-vars_portscheck_host: "{{ vars_apigateway_host }}"
+vars_portscheck_host: "{{ envvars_apigateway_host }}"
 vars_portscheck_ports:
-  - "{{ vars_apigateway_port }}"
+  - "{{ envvars_apigateway_port }}"
 vars_portscheck_ports_timeout: 900
 
 # local users
 vars_apigateway_usermgt_users:
-  - loginId: "{{ vars_apigateway_usermgt_users_sample1_username }}"
+  - loginId: "{{ envvars_apigateway_usermgt_users_sample1_username }}"
     firstName: Sample User1
     lastName: Api Admin
-    password: "{{ vars_apigateway_usermgt_users_sample1_password }}"
+    password: "{{ envvars_apigateway_usermgt_users_sample1_password }}"
     emailAddresses:
-      - "{{ vars_apigateway_usermgt_users_sample1_username }}@sample.com"
+      - "{{ envvars_apigateway_usermgt_users_sample1_username }}@sample.com"
     allowDigestAuth: false
     active: true
     language: en
-  - loginId: "{{ vars_apigateway_usermgt_users_sample2_username }}"
+  - loginId: "{{ envvars_apigateway_usermgt_users_sample2_username }}"
     firstName: Sample User2
     lastName: Api Provider
-    password: "{{ vars_apigateway_usermgt_users_sample2_password }}"
+    password: "{{ envvars_apigateway_usermgt_users_sample2_password }}"
     emailAddresses:
-      - "{{ vars_apigateway_usermgt_users_sample2_username }}@sample.com"
+      - "{{ envvars_apigateway_usermgt_users_sample2_username }}@sample.com"
     allowDigestAuth: false
     active: true
     language: en
-  - loginId: "{{ vars_apigateway_usermgt_users_sample3_username }}"
+  - loginId: "{{ envvars_apigateway_usermgt_users_sample3_username }}"
     firstName: Sample User3
     lastName: Api User
-    password: "{{ vars_apigateway_usermgt_users_sample3_password }}"
+    password: "{{ envvars_apigateway_usermgt_users_sample3_password }}"
     emailAddresses:
-      - "{{ vars_apigateway_usermgt_users_sample3_username }}@sample.com"
+      - "{{ envvars_apigateway_usermgt_users_sample3_username }}@sample.com"
     allowDigestAuth: false
     active: true
     language: en
@@ -47,17 +47,17 @@ vars_apigateway_usermgt_groups:
     description: apigateway-admins
     empty_user_ids: false
     user_loginids_add:
-      - "{{ vars_apigateway_usermgt_users_sample1_username }}"
+      - "{{ envvars_apigateway_usermgt_users_sample1_username }}"
   - name: sample-apigateway-providers
     description: apigateway-providers
     empty_user_ids: false
     user_loginids_add:
-      - "{{ vars_apigateway_usermgt_users_sample2_username }}"
+      - "{{ envvars_apigateway_usermgt_users_sample2_username }}"
   - name: sample-apigateway-users
     description: apigateway-users
     empty_user_ids: false
     user_loginids_add:
-      - "{{ vars_apigateway_usermgt_users_sample3_username }}"
+      - "{{ envvars_apigateway_usermgt_users_sample3_username }}"
 
 ## access profiles 
 ## (note: the group names / user names will get replaced by their IDs in the real REST request, and merged with the userIds/groupIds fields)
@@ -209,28 +209,28 @@ webmethods_apigateway_extended_settings_coregateway_extended_keys:
 
 ## api portal registration
 vars_apigateway_portalgateway:
-  gatewayName: "API_Gateway_{{ vars_apigateway_environment_stage }}"
-  gatewayDescription: "API Gateway in {{ vars_apigateway_environment_stage }} environment"
-  gatewayUsername: "{{ vars_apigateway_portalgateway_gateway_username }}"
-  gatewayPassword: "{{ vars_apigateway_portalgateway_gateway_password }}"
-  gatewayURL: "{{ vars_apigateway_portalgateway_gateway_url }}"
-  version: "{{ vars_apigateway_portalgateway_version }}"
-  stageName: "{{ vars_apigateway_environment_stage }}"
+  gatewayName: "API_Gateway_{{ envvars_apigateway_environment_stage }}"
+  gatewayDescription: "API Gateway in {{ envvars_apigateway_environment_stage }} environment"
+  gatewayUsername: "{{ envvars_apigateway_portalgateway_gateway_username }}"
+  gatewayPassword: "{{ envvars_apigateway_portalgateway_gateway_password }}"
+  gatewayURL: "{{ envvars_apigateway_portalgateway_gateway_url }}"
+  version: "{{ envvars_apigateway_portalgateway_version }}"
+  stageName: "{{ envvars_apigateway_environment_stage }}"
   published: true
   externalPortal:
     endpointTenant: "default"
-    endpointURL: "{{ vars_apigateway_portalgateway_portal_url }}"
-    endpointUsername: "{{ vars_apigateway_portalgateway_portal_username }}"
-    endpointPassword: "{{ vars_apigateway_portalgateway_portal_password }}"
+    endpointURL: "{{ envvars_apigateway_portalgateway_portal_url }}"
+    endpointUsername: "{{ envvars_apigateway_portalgateway_portal_username }}"
+    endpointPassword: "{{ envvars_apigateway_portalgateway_portal_password }}"
     type: "apiportal"
 
 ## api gateway promotion stages
 vars_apigateway_promotions_stages:
-  - name: "{{ vars_apigateway_environment_stage }}"
-    description: "{{ vars_apigateway_environment_stage }} Stage"
-    url: "{{ vars_apigateway_loadbalancers_http_urls }}"
-    username: "{{ vars_apigateway_rest_login_username }}"
-    password: "{{ vars_apigateway_rest_login_password }}"
+  - name: "{{ envvars_apigateway_environment_stage }}"
+    description: "{{ envvars_apigateway_environment_stage }} Stage"
+    url: "{{ envvars_apigateway_loadbalancers_http_urls }}"
+    username: "{{ envvars_apigateway_rest_login_username }}"
+    password: "{{ envvars_apigateway_rest_login_password }}"
     # keystoreAlias: "{{ webmethods_apigateway_keystore_name }}"
     # keyAlias: "{{ webmethods_apigateway_keystore_keyalias }}"
 
@@ -242,22 +242,22 @@ var_apigateway_ldap_settings:
     provider: LDAP
     ldapDirectoryList:
     - index: 0
-      url: "{{ vars_apigateway_ldap_settings.url }}"
-      principal: "{{ vars_apigateway_ldap_settings.auth_username }}"
-      password: "{{ vars_apigateway_ldap_settings.auth_password }}"
+      url: "{{ envvars_apigateway_ldap_url }}"
+      principal: "{{ envvars_apigateway_ldap_auth_username }}"
+      password: "{{ envvars_apigateway_ldap_auth_password }}"
       timeout: '5'
       poolMin: '0'
       poolMax: '10'
       useaf: false
       dnPrefix:
       dnSuffix:
-      uidProp: "{{ vars_apigateway_ldap_settings.users_id_attribute }}"
-      userRootDn: "{{ vars_apigateway_ldap_settings.users_root_dn }}"
+      uidProp: "{{ envvars_apigateway_ldap_users_id_attribute }}"
+      userRootDn: "{{ envvars_apigateway_ldap_users_root_dn }}"
       useCaching: false
       group: Everyone
-      memberAttribute: "{{ vars_apigateway_ldap_settings.groups_member_attribute }}"
-      groupIdProperty: "{{ vars_apigateway_ldap_settings.groups_id_attribute }}"
-      groupRootDN: "{{ vars_apigateway_ldap_settings.groups_root_dn }}"
+      memberAttribute: "{{ envvars_apigateway_ldap_groups_member_attribute }}"
+      groupIdProperty: "{{ envvars_apigateway_ldap_groups_id_attribute }}"
+      groupRootDN: "{{ envvars_apigateway_ldap_groups_root_dn }}"
 
 ## api gateway saml settings
 vars_apigateway_saml_settings: {}
@@ -372,15 +372,15 @@ vars_apigateway_applications:
     siteURLs: []
     identifiers:
       - value:
-          - "{{ vars_apigateway_usermgt_users_sample1_username }}"
+          - "{{ envvars_apigateway_usermgt_users_sample1_username }}"
         name: Username
         key: httpBasicAuth
       - value:
-          - "{{ vars_apigateway_usermgt_users_sample2_username }}"
+          - "{{ envvars_apigateway_usermgt_users_sample2_username }}"
         name: Username
         key: httpBasicAuth
       - value:
-          - "{{ vars_apigateway_usermgt_users_sample3_username }}"
+          - "{{ envvars_apigateway_usermgt_users_sample3_username }}"
         name: Username
         key: httpBasicAuth
     consumingAPIs: []
@@ -399,15 +399,15 @@ vars_apigateway_applications:
     siteURLs: []
     identifiers:
       - value:
-          - "{{ vars_apigateway_usermgt_users_sample1_username }}"
+          - "{{ envvars_apigateway_usermgt_users_sample1_username }}"
         name: Username
         key: httpBasicAuth
       - value:
-          - "{{ vars_apigateway_usermgt_users_sample2_username }}"
+          - "{{ envvars_apigateway_usermgt_users_sample2_username }}"
         name: Username
         key: httpBasicAuth
       - value:
-          - "{{ vars_apigateway_usermgt_users_sample3_username }}"
+          - "{{ envvars_apigateway_usermgt_users_sample3_username }}"
         name: Username
         key: httpBasicAuth
     consumingAPIs: []
@@ -421,9 +421,9 @@ vars_apigateway_applications:
 # each list item will publish a list of APIs to a list of communities using the same portalGatewayId
 vars_apigateway_apis_publish_groups:
   - lookup_portalGatewayId:
-      name: "API_Gateway_{{ vars_apigateway_environment_stage }}"
+      name: "API_Gateway_{{ envvars_apigateway_environment_stage }}"
       version: "1.0"
-      stageName: "{{ vars_apigateway_environment_stage }}"
+      stageName: "{{ envvars_apigateway_environment_stage }}"
     lookup_communityIds:
       - name: "Public Community"
     lookup_apiIds:
@@ -436,9 +436,9 @@ vars_apigateway_apis_publish_groups:
 # each list item will publish a list of Packages to a list of communities using the same portalGatewayId
 vars_apigateway_packages_publish_groups:
   - lookup_portalGatewayId:
-      name: "API_Gateway_{{ vars_apigateway_environment_stage }}"
+      name: "API_Gateway_{{ envvars_apigateway_environment_stage }}"
       version: "1.0"
-      stageName: "{{ vars_apigateway_environment_stage }}"
+      stageName: "{{ envvars_apigateway_environment_stage }}"
     lookup_communityIds:
       - name: "Public Community"
     lookup_packageIds:
@@ -480,11 +480,11 @@ vars_apigateway_aliases:
     description: bookstore endpoint alias
     type: simple
     owner: Administrator
-    value: "{{ vars_apigateway_aliases_bookstore_endpoint }}"
+    value: "{{ envvars_apigateway_aliases_bookstore_endpoint }}"
     stage: ""
   - name: uszip_endpoint
     description: uszip endpoint alias
     type: simple
     owner: Administrator
-    value: "{{ vars_apigateway_aliases_uszip_endpoint }}"
+    value: "{{ envvars_apigateway_aliases_uszip_endpoint }}"
     stage: ""
