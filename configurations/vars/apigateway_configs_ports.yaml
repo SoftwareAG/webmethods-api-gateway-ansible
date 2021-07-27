@@ -75,13 +75,13 @@ vars_apigateway_apigateway_ports_list:
       keyStore: ""
       alias: ""
       trustStore: ""
-      threadPool: 'true'
-      minThread: '1'
-      maxThread: '5'
-      threadPriority: '5'
-      maxConnections: '5'
-      keepAliveTimeout: '20000'
-      maxQueue: '200'
+      threadPool: 'false'
+      # minThread: '1'
+      # maxThread: '5'
+      # threadPriority: '5'
+      # maxConnections: '5'
+      # keepAliveTimeout: '20000'
+      # maxQueue: '200'
       clientAuth: none
       krbJaasContext: ''
       krbClientPrincipal: ''
@@ -89,7 +89,7 @@ vars_apigateway_apigateway_ports_list:
       retype_krbClientPassword: ''
       krbServicePrincipalForm: username
       krbServicePrincipal: ''
-      internalListenerKey: "HTTPListener@1099@0.0.0.0"
+      internalListenerKey: ""
       addInternalPorts: {}
       internalPort: '1099'
       internalPortAlias: InternalPort_4ExternalPort
@@ -103,12 +103,12 @@ vars_apigateway_apigateway_ports_list:
       internalalias: ""
       internalkeyStore: ""
       internaltrustStore: ""
-    access_mode:
-      accessMode: allow
-      pkg: WmRoot
-      port: ""
-      services: []
-    ip_access_mode:
-      ipAccessType: allow
-      pkg: WmRoot
-      hostsList: []
+    # access_mode:
+    #   accessMode: allow
+    #   pkg: WmRoot
+    #   port: ""
+    #   services: []
+    # ip_access_mode:
+    #   ipAccessType: allow
+    #   pkg: WmRoot
+    #   hostsList: []
