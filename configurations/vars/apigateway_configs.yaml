@@ -1,0 +1,502 @@
+---
+
+# apigateway REST access configs
+vars_apigateway_rest_protocol: "{{ envvars_apigateway_protocol }}"
+vars_apigateway_rest_host: "{{ envvars_apigateway_host }}"
+vars_apigateway_rest_port: "{{ envvars_apigateway_port }}"
+vars_apigateway_rest_login_username: "{{ envvars_apigateway_rest_login_username }}"
+vars_apigateway_rest_login_password: "{{ envvars_apigateway_rest_login_password }}"
+vars_apigateway_rest_login_password_old: "{{ envvars_apigateway_rest_login_password_old }}"
+
+# apigateway portchecks configs
+vars_portscheck_host: "{{ envvars_apigateway_host }}"
+vars_portscheck_ports:
+  - "{{ envvars_apigateway_port }}"
+vars_portscheck_ports_timeout: 900
+
+# load balancer urls
+vars_apigateway_loadbalancers_http_urls:
+  - "{{ envvars_apigateway_loadbalancers_http_urls }}"
+vars_apigateway_loadbalancers_https_urls:
+  - "{{ envvars_apigateway_loadbalancers_https_urls }}"
+vars_apigateway_loadbalancers_websocket_urls:
+  - "{{ envvars_apigateway_loadbalancers_websocket_urls }}"
+vars_apigateway_loadbalancers_webapp_url: "{{ envvars_apigateway_loadbalancers_webapp_url }}"
+
+# local users
+vars_apigateway_usermgt_users:
+  - loginId: "{{ envvars_apigateway_usermgt_users_sample1_username }}"
+    firstName: Sample User1
+    lastName: Api Admin
+    password: "{{ envvars_apigateway_usermgt_users_sample1_password }}"
+    emailAddresses:
+      - "{{ envvars_apigateway_usermgt_users_sample1_username }}@sample.com"
+    allowDigestAuth: false
+    active: true
+    language: en
+  - loginId: "{{ envvars_apigateway_usermgt_users_sample2_username }}"
+    firstName: Sample User2
+    lastName: Api Provider
+    password: "{{ envvars_apigateway_usermgt_users_sample2_password }}"
+    emailAddresses:
+      - "{{ envvars_apigateway_usermgt_users_sample2_username }}@sample.com"
+    allowDigestAuth: false
+    active: true
+    language: en
+  - loginId: "{{ envvars_apigateway_usermgt_users_sample3_username }}"
+    firstName: Sample User3
+    lastName: Api User
+    password: "{{ envvars_apigateway_usermgt_users_sample3_password }}"
+    emailAddresses:
+      - "{{ envvars_apigateway_usermgt_users_sample3_username }}@sample.com"
+    allowDigestAuth: false
+    active: true
+    language: en
+
+## local usergroups
+vars_apigateway_usermgt_groups:
+  - name: sample-apigateway-admins
+    description: apigateway-admins
+    empty_user_ids: false
+    user_loginids_add:
+      - "{{ envvars_apigateway_usermgt_users_sample1_username }}"
+  - name: sample-apigateway-providers
+    description: apigateway-providers
+    empty_user_ids: false
+    user_loginids_add:
+      - "{{ envvars_apigateway_usermgt_users_sample2_username }}"
+  - name: sample-apigateway-users
+    description: apigateway-users
+    empty_user_ids: false
+    user_loginids_add:
+      - "{{ envvars_apigateway_usermgt_users_sample3_username }}"
+
+## access profiles 
+## (note: the group names / user names will get replaced by their IDs in the real REST request, and merged with the userIds/groupIds fields)
+vars_apigateway_usermgt_accessprofiles:
+  - name: sample-apigateway-users-team
+    description: apigateway-users-team description
+    privilege: "10010010010100000001010001"
+    groupnames:
+      - sample-apigateway-users
+    groupIds: []
+    teamAdmin:
+      usernames: []
+      groupnames: []
+  - name: sample-apigateway-providers-team
+    description: apigateway-providers-team description
+    privilege: "111111111111111111111111100"
+    groupnames:
+      - sample-apigateway-providers
+    groupIds: []
+    teamAdmin:
+      usernames: []
+      groupnames: []
+  - name: sample-apigateway-admins-team
+    description: apigateway-admins-team description
+    privilege: "111111111111111111111111111"
+    groupnames:
+      - sample-apigateway-admins
+    groupIds: []
+    teamAdmin:
+      usernames: []
+      groupnames: []
+
+## apigateway ports
+vars_apigateway_apigateway_ports_list:
+  - port_type: regular_http
+    port_detail:
+      portAlias: SAGAlternatePort
+      portDescription: HTTP Alternate port
+      port: '6666'
+      enable: 'yes'
+      threadPool: 'true'
+      minThread: 5
+      maxThread: 20
+      threadPriority: 5
+      maxQueue: 200
+      keepAliveTimeout: 20000
+      clientAuth: none
+    access_mode:
+      accessMode: allow
+      pkg: WmRoot
+      port: ""
+      services: []
+    ip_access_mode:
+      ipAccessType: allow
+      pkg: WmRoot
+      hostsList: []
+  - port_type: internal_http
+    port_detail:
+      portAlias: InternalPort
+      portDescription: Internal port
+      port: '7777'
+      proxyHost: test.com
+      enable: 'yes'
+      threadPool: 'true'
+      minThread: '1'
+      maxThread: '5'
+      threadPriority: '5'
+      maxConnections: '5'
+      keepAliveTimeout: '20000'
+      clientAuth: none
+    access_mode:
+      accessMode: allow
+      pkg: WmRoot
+      port: ""
+      services: []
+    ip_access_mode:
+      ipAccessType: allow
+      pkg: WmRoot
+      hostsList: []
+  # - port_type: external_http
+  #   port_detail:
+  #     portAlias: ExternalPort
+  #     portDescription: External Port
+  #     port: '8888'
+  #     bindAddress: 0.0.0.0
+  #     enable: 'yes'
+  #     threadPool: 'true'
+  #     minThread: '1'
+  #     maxThread: '5'
+  #     threadPriority: '5'
+  #     maxConnections: '5'
+  #     keepAliveTimeout: '20000'
+  #     maxQueue: '200'
+  #     clientAuth: none
+  #     krbJaasContext: ''
+  #     krbClientPrincipal: ''
+  #     krbClientPassword: ''
+  #     retype_krbClientPassword: ''
+  #     krbServicePrincipalForm: username
+  #     krbServicePrincipal: ''
+  #     addInternalPorts: {}
+  #     internalPort: '7777'
+  #     internalPortAlias: InternalPort
+  #     internalPortDescription: test
+  #     internalEnable: 'yes'
+  #     internalSsl: 'false'
+  #     internalClientAuth: none
+  #     internalBindAddress: 0.0.0.0
+  #     internalPkg: WmRoot
+  #   access_mode:
+  #     accessMode: allow
+  #     pkg: WmRoot
+  #     port: ""
+  #     services: []
+  #   ip_access_mode:
+  #     ipAccessType: allow
+  #     pkg: WmRoot
+  #     hostsList: []
+  - port_type: websocket
+    port_detail:
+      portAlias: WebsocketPort
+      portDescription: Websocket Port
+      port: '7777'
+      bindAddress: 0.0.0.0
+      enable: 'yes'
+      maxQueue: '200'
+      idleTimeout: '60000'
+    access_mode:
+      accessMode: allow
+      pkg: WmRoot
+      port: ""
+      services: []
+    ip_access_mode:
+      ipAccessType: allow
+      pkg: WmRoot
+      hostsList: []
+
+## extended settings - is runtime settings (note: this must be run on all the nodes)
+vars_apigateway_apigateway_extended_settings_isruntime_watt_keys:
+  watt.net.timeout: 400
+  watt.server.threadPool: 500
+  watt.server.threadPoolMin: 50
+  watt.server.control.serverThreadThreshold: 20
+
+## extended settings - apigateway settings (note: this are replicated in the cluster)
+vars_apigateway_extended_settings_coregateway_extended_keys:
+  maxAllowedZipFileSize: "50000000"
+  enableTeamWork: "true"
+
+## api portal registration
+vars_apigateway_portalgateway:
+  gatewayName: "API_Gateway_{{ envvars_apigateway_environment_stage }}"
+  gatewayDescription: "API Gateway in {{ envvars_apigateway_environment_stage }} environment"
+  gatewayUsername: "{{ envvars_apigateway_portalgateway_gateway_username }}"
+  gatewayPassword: "{{ envvars_apigateway_portalgateway_gateway_password }}"
+  gatewayURL: "{{ envvars_apigateway_portalgateway_gateway_url }}"
+  version: "{{ envvars_apigateway_portalgateway_version }}"
+  stageName: "{{ envvars_apigateway_environment_stage }}"
+  published: true
+  externalPortal:
+    endpointTenant: "default"
+    endpointURL: "{{ envvars_apigateway_portalgateway_portal_url }}"
+    endpointUsername: "{{ envvars_apigateway_portalgateway_portal_username }}"
+    endpointPassword: "{{ envvars_apigateway_portalgateway_portal_password }}"
+    type: "apiportal"
+
+## api gateway promotion stages
+vars_apigateway_promotions_stages:
+  - name: "{{ envvars_apigateway_environment_stage }}"
+    description: "{{ envvars_apigateway_environment_stage }} Stage"
+    url: "{{ envvars_apigateway_loadbalancers_http_urls }}"
+    username: "{{ envvars_apigateway_rest_login_username }}"
+    password: "{{ envvars_apigateway_rest_login_password }}"
+    # keystoreAlias: "{{ webmethods_apigateway_keystore_name }}"
+    # keyAlias: "{{ webmethods_apigateway_keystore_keyalias }}"
+
+## api gateway ldap registration
+vars_apigateway_ldap_settings:
+  ldapConfig:
+    cacheSize: '10'
+    cacheTTL: '60'
+    provider: LDAP
+    ldapDirectoryList:
+    - index: 0
+      url: "{{ envvars_apigateway_ldap_url }}"
+      principal: "{{ envvars_apigateway_ldap_auth_username }}"
+      password: "{{ envvars_apigateway_ldap_auth_password }}"
+      timeout: '5'
+      poolMin: '0'
+      poolMax: '10'
+      useaf: false
+      dnPrefix:
+      dnSuffix:
+      uidProp: "{{ envvars_apigateway_ldap_users_id_attribute }}"
+      userRootDn: "{{ envvars_apigateway_ldap_users_root_dn }}"
+      useCaching: false
+      group: Everyone
+      memberAttribute: "{{ envvars_apigateway_ldap_groups_member_attribute }}"
+      groupIdProperty: "{{ envvars_apigateway_ldap_groups_id_attribute }}"
+      groupRootDN: "{{ envvars_apigateway_ldap_groups_root_dn }}"
+
+## api gateway saml settings
+vars_apigateway_saml_settings: {}
+
+# api plans to add or update
+vars_apigateway_plans:
+  - name: gold
+    version: "1.0"
+    deprecated: false
+    isProtected: false
+    policiesNames: []
+    cost:
+      currency:
+      value:
+      duration:
+    quota:
+      enforcementPolicyName: ""
+    protected: false
+  - name: silver
+    version: "1.0"
+    deprecated: false
+    isProtected: false
+    policiesNames: []
+    cost:
+      currency:
+      value:
+      duration:
+    quota:
+      enforcementPolicyName: ""
+    protected: false
+  - name: bronze
+    version: "1.0"
+    deprecated: false
+    isProtected: false
+    policiesNames: []
+    cost:
+      currency:
+      value:
+      duration:
+    quota:
+      enforcementPolicyName: ""
+    protected: false
+
+# api packages to add or update
+# the following attributes with "custom_" will be transformed to corresponding attributes of internal ids:
+# - custom_apiIdsByFilter --> apiIds
+# - custom_planIdsByFilter --> planIds
+# - custom_policyIdsByFilter --> policyIds
+vars_apigateway_packages:
+  - name: Swag Pack Complete
+    version: "1.0"
+    deprecated: false
+    custom_apiIdsByFilter:
+      - name: "bookstore"
+        version: "1.0"
+      - name: "uszip"
+        version: "1.0"
+    custom_planIdsByFilter:
+      - name: "gold"
+        version: "1.0"
+      - name: "silver"
+        version: "1.0"
+      - name: "bronze"
+        version: "1.0"
+    publishedPortals: []
+    custom_policyIdsByFilter: []
+    active: true
+  - name: Swag Pack Bookstore
+    version: "1.0"
+    deprecated: false
+    custom_apiIdsByFilter:
+      - name: "bookstore"
+        version: "1.0"
+    custom_planIdsByFilter:
+      - name: "gold"
+        version: "1.0"
+      - name: "silver"
+        version: "1.0"
+      - name: "bronze"
+        version: "1.0"
+    publishedPortals: []
+    custom_policyIdsByFilter: []
+    active: true
+  - name: Swag Pack UsZip
+    version: "1.0"
+    deprecated: false
+    custom_apiIdsByFilter:
+      - name: "uszip"
+        version: "1.0"
+    custom_planIdsByFilter:
+      - name: "gold"
+        version: "1.0"
+      - name: "silver"
+        version: "1.0"
+      - name: "bronze"
+        version: "1.0"
+    publishedPortals: []
+    custom_policyIdsByFilter: []
+    active: true
+
+# applications to add or update
+# the following attributes with "names/version" will be transformed to corresponding attributes of internal ids:
+# - custom_registerAPIsByFilter --> triggers the registration apis call
+vars_apigateway_applications:
+  - name: Sample Bookstore Application
+    description: Sample application needing access to the Bookstore APIs
+    version: "1.0"
+    custom_registerAPIsByFilter:
+      - name: "bookstore"
+        version: "1.0"
+    contactEmails: []
+    siteURLs: []
+    identifiers:
+      - value:
+          - "{{ envvars_apigateway_usermgt_users_sample1_username }}"
+        name: Username
+        key: httpBasicAuth
+      - value:
+          - "{{ envvars_apigateway_usermgt_users_sample2_username }}"
+        name: Username
+        key: httpBasicAuth
+      - value:
+          - "{{ envvars_apigateway_usermgt_users_sample3_username }}"
+        name: Username
+        key: httpBasicAuth
+    consumingAPIs: []
+    isSuspended: false
+    jsOrigins: []
+    authStrategyIds: []
+    restrictViewAsset: false
+    teams: []
+  - name: Sample UsZip Application
+    description: Sample application needing access to the UsZip APIs
+    version: "1.0"
+    custom_registerAPIsByFilter:
+      - name: "uszip"
+        version: "1.0"
+    contactEmails: []
+    siteURLs: []
+    identifiers:
+      - value:
+          - "{{ envvars_apigateway_usermgt_users_sample1_username }}"
+        name: Username
+        key: httpBasicAuth
+      - value:
+          - "{{ envvars_apigateway_usermgt_users_sample2_username }}"
+        name: Username
+        key: httpBasicAuth
+      - value:
+          - "{{ envvars_apigateway_usermgt_users_sample3_username }}"
+        name: Username
+        key: httpBasicAuth
+    consumingAPIs: []
+    isSuspended: false
+    jsOrigins: []
+    authStrategyIds: []
+    restrictViewAsset: false
+    teams: []
+
+# APIs to publish to api portal
+# each list item will publish a list of APIs to a list of communities using the same portalGatewayId
+vars_apigateway_apis_publish_groups:
+  - lookup_portalGatewayId:
+      name: "API_Gateway_{{ envvars_apigateway_environment_stage }}"
+      version: "1.0"
+      stageName: "{{ envvars_apigateway_environment_stage }}"
+    lookup_communityIds:
+      - name: "Public Community"
+    lookup_apiIds:
+      - name: "bookstore"
+        version: "1.0"
+      - name: "uszip"
+        version: "1.0"
+
+# API Packages to publish to api portal
+# each list item will publish a list of Packages to a list of communities using the same portalGatewayId
+vars_apigateway_packages_publish_groups:
+  - lookup_portalGatewayId:
+      name: "API_Gateway_{{ envvars_apigateway_environment_stage }}"
+      version: "1.0"
+      stageName: "{{ envvars_apigateway_environment_stage }}"
+    lookup_communityIds:
+      - name: "Public Community"
+    lookup_packageIds:
+      - name: Swag Pack Complete
+        version: "1.0"
+      - name: Swag Pack Bookstore
+        version: "1.0"
+      - name: Swag Pack UsZip
+        version: "1.0"
+      - name: Swag Pack CovidReports
+        version: "1.0"
+
+## api packages to import into gateway
+vars_apigateway_archive_imports_from_s3:
+  - bucket_path: "demo_repo/apigateway_archives/10.7/apigw107-archive-uszip-1.0.zip"
+    local_path: "{{ ansible_env.HOME }}/install_artifacts/apigw107-archive-uszip-1.0.zip"
+    overwrite: "apis,policies,policyactions"
+    fixingMissingVersions: "true"
+    preserveAssetState: "true"
+  - bucket_path: "demo_repo/apigateway_archives/10.7/apigw107-archive-bookstore-1.0.zip"
+    local_path: "{{ ansible_env.HOME }}/install_artifacts/apigw107-archive-bookstore-1.0.zip"
+    overwrite: "apis,policies,policyactions"
+    fixingMissingVersions: "true"
+    preserveAssetState: "true"
+  - bucket_path: "demo_repo/apigateway_archives/10.7/global_policies/Transaction_logging.zip"
+    local_path: "{{ ansible_env.HOME }}/install_artifacts/Transaction_logging.zip"
+    overwrite: "*"
+    fixingMissingVersions: "true"
+    preserveAssetState: "true"
+  - bucket_path: "demo_repo/apigateway_archives/10.7/global_policies/Enforce_Protected_APIs_via_multiple_protocols.zip"
+    local_path: "{{ ansible_env.HOME }}/install_artifacts/Enforce_Protected_APIs_via_multiple_protocols.zip"
+    overwrite: "*"
+    fixingMissingVersions: "true"
+    preserveAssetState: "true"
+
+## api aliases to import into gateway
+vars_apigateway_aliases:
+  - name: bookstore_endpoint
+    description: bookstore endpoint alias
+    type: simple
+    owner: Administrator
+    value: "{{ envvars_apigateway_aliases_bookstore_endpoint }}"
+    stage: ""
+  - name: uszip_endpoint
+    description: uszip endpoint alias
+    type: simple
+    owner: Administrator
+    value: "{{ envvars_apigateway_aliases_uszip_endpoint }}"
+    stage: ""

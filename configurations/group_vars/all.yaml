@@ -1,0 +1,14 @@
+---
+
+##################### async jobs defaults
+common_async_retries: 240
+common_async_delay: 10
+common_async_timeout: 2400
+common_async_poll: 0
+
+##################### the defaults S3 values to use if the file descriptor dictionary does not contain an optional variable
+getfroms3_defaults_bucket_name: "{{ envvars_apigateway_aws_s3_bucket }}"
+getfroms3_defaults_bucket_prefix: "{{ envvars_apigateway_aws_s3_bucket_prefix }}"
+
+##################### aws cli executable
+aws_cli_exe: "/usr/local/bin/aws"
