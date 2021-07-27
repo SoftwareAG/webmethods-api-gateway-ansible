@@ -69,9 +69,12 @@ vars_apigateway_apigateway_ports_list:
     port_detail:
       portAlias: ExternalPort
       portDescription: External Port
-      port: '8888'
+      port: '1088'
       bindAddress: 0.0.0.0
       enable: 'yes'
+      keyStore: ""
+      alias: ""
+      trustStore: ""
       threadPool: 'true'
       minThread: '1'
       maxThread: '5'
@@ -86,15 +89,20 @@ vars_apigateway_apigateway_ports_list:
       retype_krbClientPassword: ''
       krbServicePrincipalForm: username
       krbServicePrincipal: ''
+      internalListenerKey: ""
       addInternalPorts: {}
-      internalPort: '8899'
+      internalPort: '1099'
       internalPortAlias: InternalPort_4ExternalPort
       internalPortDescription: Internal port used by external port
       internalEnable: 'yes'
-      internalSsl: 'false'
       internalClientAuth: none
-      internalBindAddress: 0.0.0.0
+      internalBindAddress: "0.0.0.0"
       internalPkg: WmRoot
+      internalSsl: 'false'
+      internalUseJSSE: 'false'
+      internalalias: ""
+      internalkeyStore: ""
+      internaltrustStore: ""
     access_mode:
       accessMode: allow
       pkg: WmRoot
