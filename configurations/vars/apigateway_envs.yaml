@@ -4,6 +4,7 @@
 
 # enable / disable the config items
 envvars_cleanup_regex: '[''"]'
+envvars_apigateway_keystoretruststore_enabled: "{{ lookup('env', 'env_apigateway_keystoretruststore') | default('false',true) | regex_replace(envvars_cleanup_regex,'') }}"
 envvars_apigateway_usermgt_enabled: "{{ lookup('env', 'env_apigateway_configure_usermgt') | default('false',true) | regex_replace(envvars_cleanup_regex,'') }}"
 envvars_apigateway_portalgateway_enabled: "{{ lookup('env', 'env_apigateway_configure_portalgateway') | default('false',true) | regex_replace(envvars_cleanup_regex,'') }}"
 envvars_apigateway_archive_imports_enabled: "{{ lookup('env', 'env_apigateway_configure_archives') | default('false',true) | regex_replace(envvars_cleanup_regex,'') }}"

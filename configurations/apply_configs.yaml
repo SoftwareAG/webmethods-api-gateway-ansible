@@ -62,23 +62,31 @@
         apigateway_rest_login_password: "{{ vars_apigateway_rest_login_password }}"
       tags: always
 
-    ## printing the vars that enable/disable the roles
-    - block:
-        - debug: var=vars_apigateway_usermgt_enabled verbosity=3
-        - debug: var=vars_apigateway_portalgateway_enabled verbosity=3
-        - debug: var=vars_apigateway_archive_imports_enabled verbosity=3
-        - debug: var=vars_apigateway_aliases_enabled verbosity=3
-        - debug: var=vars_apigateway_ports_enabled verbosity=3
-        - debug: var=vars_apigateway_ldap_enabled verbosity=3
-        - debug: var=vars_apigateway_saml_enabled verbosity=3
-        - debug: var=vars_apigateway_loadbalancer_enabled verbosity=3
-        - debug: var=vars_apigateway_promotions_stages_enabled verbosity=3
-        - debug: var=vars_apigateway_extended_settings_enabled verbosity=3
-        - debug: var=vars_apigateway_applications_enabled verbosity=3
-        - debug: var=vars_apigateway_plans_enabled verbosity=3
-        - debug: var=vars_apigateway_packages_enabled verbosity=3
-      tags: always
-   
+    - import_role:
+        name: configure-apigateway
+      vars:
+        configs_action: upload-truststore
+        configs_enabled: "{{ envvars_apigateway_keystoretruststore_enabled }}"
+      tags:
+        - configs_truststore
+
+    - import_role:
+        name: configure-apigateway
+      vars:
+        configs_action: upload-keystore
+        configs_enabled: "{{ envvars_apigateway_keystoretruststore_enabled }}"
+      tags:
+        - configs_keystore
+
+    - import_role:
+        name: configure-apigateway
+      vars:
+        configs_action: set-keytruststore-for-connections
+        configs_enabled: "{{ envvars_apigateway_keystoretruststore_enabled }}"
+      tags:
+        - configs_truststore
+        - configs_keystore
+
     - import_role:
         name: configure-apigateway
       vars:
