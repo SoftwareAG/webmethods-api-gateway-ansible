@@ -89,7 +89,7 @@ vars_apigateway_apigateway_ports_list:
       retype_krbClientPassword: ''
       krbServicePrincipalForm: username
       krbServicePrincipal: ''
-      internalListenerKey: ""
+      internalListenerKey: "HTTPListener@1099@0.0.0.0"
       addInternalPorts: {}
       internalPort: '1099'
       internalPortAlias: InternalPort_4ExternalPort
