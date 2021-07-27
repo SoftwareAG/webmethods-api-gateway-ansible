@@ -1,0 +1,106 @@
+---
+
+## apigateway ports
+vars_apigateway_apigateway_ports_list:
+  - port_type: regular_http
+    port_detail:
+      portAlias: SAGAlternatePort
+      portDescription: HTTP Alternate port
+      port: '5566'
+      enable: 'yes'
+      threadPool: 'true'
+      minThread: 5
+      maxThread: 20
+      threadPriority: 5
+      maxQueue: 200
+      keepAliveTimeout: 20000
+      clientAuth: none
+    access_mode:
+      accessMode: allow
+      pkg: WmRoot
+      port: ""
+      services: []
+    ip_access_mode:
+      ipAccessType: allow
+      pkg: WmRoot
+      hostsList: []
+  - port_type: websocket
+    port_detail:
+      portAlias: WebsocketPort
+      portDescription: Websocket Port
+      port: '5577'
+      bindAddress: 0.0.0.0
+      enable: 'yes'
+      maxQueue: '200'
+      idleTimeout: '60000'
+    access_mode:
+      accessMode: allow
+      pkg: WmRoot
+      port: ""
+      services: []
+    ip_access_mode:
+      ipAccessType: allow
+      pkg: WmRoot
+      hostsList: []
+  - port_type: internal_http
+    port_detail:
+      portAlias: InternalPort
+      portDescription: Internal port
+      port: '7777'
+      proxyHost: test.com
+      enable: 'yes'
+      threadPool: 'true'
+      minThread: '1'
+      maxThread: '5'
+      threadPriority: '5'
+      maxConnections: '5'
+      keepAliveTimeout: '20000'
+      clientAuth: none
+    access_mode:
+      accessMode: allow
+      pkg: WmRoot
+      port: ""
+      services: []
+    ip_access_mode:
+      ipAccessType: allow
+      pkg: WmRoot
+      hostsList: []
+  # - port_type: external_http
+  #   port_detail:
+  #     portAlias: ExternalPort
+  #     portDescription: External Port
+  #     port: '7788'
+  #     bindAddress: 0.0.0.0
+  #     enable: 'yes'
+  #     threadPool: 'true'
+  #     minThread: '1'
+  #     maxThread: '5'
+  #     threadPriority: '5'
+  #     maxConnections: '5'
+  #     keepAliveTimeout: '20000'
+  #     maxQueue: '200'
+  #     clientAuth: none
+  #     krbJaasContext: ''
+  #     krbClientPrincipal: ''
+  #     krbClientPassword: ''
+  #     retype_krbClientPassword: ''
+  #     krbServicePrincipalForm: username
+  #     krbServicePrincipal: ''
+  #     addInternalPorts: {}
+  #     internalPort: '7777'
+  #     internalPortAlias: InternalPort
+  #     internalPortDescription: test
+  #     internalEnable: 'yes'
+  #     internalSsl: 'false'
+  #     internalClientAuth: none
+  #     internalBindAddress: 0.0.0.0
+  #     internalPkg: WmRoot
+  #   access_mode:
+  #     accessMode: allow
+  #     pkg: WmRoot
+  #     port: ""
+  #     services: []
+  #   ip_access_mode:
+  #     ipAccessType: allow
+  #     pkg: WmRoot
+  #     hostsList: []
