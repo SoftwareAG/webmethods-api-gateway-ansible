@@ -283,33 +283,6 @@ vars_apigateway_applications:
     authStrategyIds: []
     restrictViewAsset: false
     teams: []
-  - name: Sample Covid Report Application
-    description: Sample Covid Report application needing access to the Covid Report APIs
-    version: "1.0"
-    custom_registerAPIsByFilter:
-      - name: "covid"
-        version: "1.0"
-    contactEmails: []
-    siteURLs: []
-    identifiers:
-      - value:
-          - "{{ vars_apigateway_usermgt_users_sample1_username }}"
-        name: Username
-        key: httpBasicAuth
-      - value:
-          - "{{ vars_apigateway_usermgt_users_sample2_username }}"
-        name: Username
-        key: httpBasicAuth
-      - value:
-          - "{{ vars_apigateway_usermgt_users_sample3_username }}"
-        name: Username
-        key: httpBasicAuth
-    consumingAPIs: []
-    isSuspended: false
-    jsOrigins: []
-    authStrategyIds: []
-    restrictViewAsset: false
-    teams: []
 
 # APIs to publish to api portal
 # each list item will publish a list of APIs to a list of communities using the same portalGatewayId
@@ -324,8 +297,6 @@ vars_apigateway_apis_publish_groups:
       - name: "bookstore"
         version: "1.0"
       - name: "uszip"
-        version: "1.0"
-      - name: "covid"
         version: "1.0"
 
 # API Packages to publish to api portal
