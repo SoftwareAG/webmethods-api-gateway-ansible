@@ -5,6 +5,7 @@ env_apigateway_stage="dev"
 # the flags to enable/disable the config item
 env_apigateway_configure_usermgt="true"
 env_apigateway_configure_aliases="true"
+env_apigateway_configure_keystoretruststore="true"
 env_apigateway_configure_ports="true"
 env_apigateway_configure_ldap="true"
 env_apigateway_configure_saml="true"

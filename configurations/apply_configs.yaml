@@ -72,6 +72,7 @@
       vars:
         configs_action: upload-truststore
         configs_enabled: "{{ envvars_apigateway_keystoretruststore_enabled }}"
+        webmethods_apigateway_truststore: "{{ vars_apigateway_truststore }}"
       tags:
         - configs_truststore
 
@@ -80,6 +81,8 @@
       vars:
         configs_action: upload-keystore
         configs_enabled: "{{ envvars_apigateway_keystoretruststore_enabled }}"
+        webmethods_apigateway_keystore: "{{ vars_apigateway_keystore }}"
+        webmethods_apigateway_keystore_keyalias_list: "{{ vars_apigateway_keystore_keyalias_list }}"
       tags:
         - configs_keystore
 
@@ -88,6 +91,7 @@
       vars:
         configs_action: set-keytruststore-for-connections
         configs_enabled: "{{ envvars_apigateway_keystoretruststore_enabled }}"
+        webmethods_apigateway_keytruststore_configuration: "{{ vars_apigateway_keytruststore_configuration }}"
       tags:
         - configs_truststore
         - configs_keystore
