@@ -1,24 +1,20 @@
 ---
 
 ## apigateway archives to import
-vars_apigateway_archive_imports_from_s3:
-  - bucket_path: "demo_repo/apigateway_archives/10.7/apigw107-archive-uszip-1.0.zip"
-    local_path: "{{ ansible_env.HOME }}/install_artifacts/apigw107-archive-uszip-1.0.zip"
+vars_apigateway_archives:
+  - path: "./demo_artifacts/apigw-archive-demo-uszip-1.0.zip"
     overwrite: "apis,policies,policyactions"
     fixingMissingVersions: "true"
     preserveAssetState: "true"
-  - bucket_path: "demo_repo/apigateway_archives/10.7/apigw107-archive-bookstore-1.0.zip"
-    local_path: "{{ ansible_env.HOME }}/install_artifacts/apigw107-archive-bookstore-1.0.zip"
+  - local_path: "./demo_artifacts/apigw-archive-demo-bookstore-1.0.zip"
     overwrite: "apis,policies,policyactions"
     fixingMissingVersions: "true"
     preserveAssetState: "true"
-  - bucket_path: "demo_repo/apigateway_archives/10.7/global_policies/Transaction_logging.zip"
-    local_path: "{{ ansible_env.HOME }}/install_artifacts/Transaction_logging.zip"
+  - path: "./demo_artifacts/apigw-archive-demo-globalpolicy-transaction-logging.zip"
     overwrite: "*"
     fixingMissingVersions: "true"
     preserveAssetState: "true"
-  - bucket_path: "demo_repo/apigateway_archives/10.7/global_policies/Enforce_Protected_APIs_via_multiple_protocols.zip"
-    local_path: "{{ ansible_env.HOME }}/install_artifacts/Enforce_Protected_APIs_via_multiple_protocols.zip"
+  - path: "./demo_artifacts/apigw-archive-demo-globalpolicy-enforcesecurity.zip"
     overwrite: "*"
     fixingMissingVersions: "true"
     preserveAssetState: "true"

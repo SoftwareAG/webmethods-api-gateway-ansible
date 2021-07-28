@@ -183,9 +183,9 @@
     - include_role:
         name: configure-apigateway
       vars:
-        configs_action: import-archive-from-s3
+        configs_action: import-archives
         configs_enabled: "{{ envvars_apigateway_archive_imports_enabled }}"
-        rvar_apigateway_archive_imports_s3_downloads: "{{ vars_apigateway_archive_imports_from_s3 }}"
+        rvar_apigateway_archive_imports: "{{ vars_apigateway_archives }}"
       tags:
         - configs_archives
 
