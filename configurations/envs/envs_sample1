@@ -33,6 +33,14 @@ env_apigateway_rest_password_old="manage"
 env_apigateway_aws_s3_bucket=""
 env_apigateway_aws_s3_bucket_prefix=""
 
+## ssl certs
+env_apigateway_keystore_filepath="sagdemokey.jks"
+env_apigateway_keystore_password="changeme1"
+env_apigateway_keystore_keyalias="demo"
+env_apigateway_keystore_keyalias_password="changeme2"
+env_apigateway_truststore_filepath="sagdemotrust.jks"
+env_apigateway_truststore_password="changeme3"
+
 ## local sample users
 env_apigateway_users_sample1_username="sampleuser1.apiadmin"
 env_apigateway_users_sample1_password="changeme"

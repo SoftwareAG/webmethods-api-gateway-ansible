@@ -1,38 +1,25 @@
 ---
 
 ## certs
-vars_apigateway_keystore_local_path: "{{ ansible_env.HOME }}/certs/SAGKeystore.jks"
-vars_apigateway_keystore_filename: "{{ vars_apigateway_keystore_local_path | basename }}"
+### keystore
+vars_apigateway_keystore_filepath: "{{ envvars_apigateway_keystore_filepath }}"
+vars_apigateway_keystore_filename: "{{ vars_apigateway_keystore_filepath | basename }}"
 vars_apigateway_keystore_aliasname: "{{ (vars_apigateway_keystore_filename | splitext)[0] }}"
 vars_apigateway_keystore_description: "SAG Keystore"
 vars_apigateway_keystore_type: "JKS"
 vars_apigateway_keystore_provider: "SUN"
-vars_apigateway_keystore_password: "{{ lookup('env', 'env_apigateway_keystore_password') | default('',true) }}"
-vars_apigateway_keystore_keyalias: ""
-vars_apigateway_keystore_keyalias_password: "{{ lookup('env', 'env_apigateway_keystore_keyalias_password') | default('',true) }}"
+vars_apigateway_keystore_password: "{{ envvars_apigateway_keystore_password }}"
+vars_apigateway_keystore_keyalias: "{{ envvars_apigateway_keystore_keyalias }}"
+vars_apigateway_keystore_keyalias_password: "{{ envvars_apigateway_keystore_keyalias_password }}"
 
-vars_apigateway_truststore_local_path: "{{ ansible_env.HOME }}/certs/SAGTruststore.jks"
-vars_apigateway_truststore_filename: "{{ vars_apigateway_truststore_local_path | basename }}"
+### truststore
+vars_apigateway_truststore_filepath: "{{envvars_apigateway_truststore_filepath }}"
+vars_apigateway_truststore_filename: "{{ vars_apigateway_truststore_filepath | basename }}"
 vars_apigateway_truststore_aliasname: "{{ (vars_apigateway_truststore_filename | splitext)[0] }}"
 vars_apigateway_truststore_description: "SAG Truststore"
 vars_apigateway_truststore_type: "JKS"
 vars_apigateway_truststore_provider: "SUN"
-vars_apigateway_truststore_password: "{{ lookup('env', 'env_apigateway_truststore_password') | default('',true) }}"
-
-## download descriptor for certs
-vars_apigateway_certs_download_descriptor:
-  - bucket_path: "demo_repo/certs/SAGDemoKeystore.jks"
-    local_path: "{{ vars_apigateway_keystore_local_path }}"
-    local_path_permission: "0600"
-    local_path_create_dir_ifnotexist: true
-    local_path_create_dir_permission: "0700"
-    force_download: "true"
-  - bucket_path: "demo_repo/certs/SAGDemoTruststore.jks"
-    local_path: "{{ vars_apigateway_truststore_local_path }}"
-    local_path_permission: "0600"
-    local_path_create_dir_ifnotexist: true
-    local_path_create_dir_permission: "0700"
-    force_download: "true"
+vars_apigateway_truststore_password: "{{ envvars_apigateway_truststore_password }}"
 
 ## apigateway truststore details
 vars_apigateway_truststore:
@@ -42,7 +29,7 @@ vars_apigateway_truststore:
   keyStorePassword: "{{ vars_apigateway_truststore_password | b64encode }}"
   uploadFileName: "{{ vars_apigateway_truststore_filename }}"
   keyStoreDescription: "{{ vars_apigateway_truststore_description }}"
-  fileContent: "@{{ vars_apigateway_truststore_local_path }}"
+  fileContent: "@{{ vars_apigateway_truststore_filepath }}"
   isPwdBase64Encoded: "true"
 
 ## apigateway keystore details
@@ -56,7 +43,7 @@ vars_apigateway_keystore:
   keyStorePassword: "{{ vars_apigateway_keystore_password | b64encode }}"
   uploadFileName: "{{ vars_apigateway_keystore_filename }}"
   keyStoreDescription: "{{ vars_apigateway_keystore_description }}"
-  fileContent: "@{{ vars_apigateway_keystore_local_path }}"
+  fileContent: "@{{ vars_apigateway_keystore_filepath }}"
   isPwdBase64Encoded: "true"
 
 # this is for the aliases inside the keystore
