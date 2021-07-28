@@ -1,4 +1,5 @@
 # webmethods-api-gateway-ansible
+
 A sample project that demonstrates how to use the Ansible roles to install and configure the API Gateway
 
 # Authors
@@ -7,6 +8,13 @@ Fabien Sanglier
 - Github: 
   - [Fabien Sanglier](https://github.com/lanimall)
   - [Fabien Sanglier @ SoftwareAG Government Solutions](https://github.com/fabien-sanglier-saggs)
+
+# Content
+
+After you go through the general pre-requisites detailed on this page, simply refer to the following sub-sections based on what you want to do:
+
+ - [API Gateway Configuration via Ansible](./configurations/README.md)
+ - [API Gateway Installation via Ansible](./installations/README.md)
 
 ## Pre-requisite: Install Ansible
 

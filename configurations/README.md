@@ -1,4 +1,4 @@
-# Configurations
+# API Gateway Configurations via Ansible
 
 ## Pre-requisite: API Gateway / API Portal
 
