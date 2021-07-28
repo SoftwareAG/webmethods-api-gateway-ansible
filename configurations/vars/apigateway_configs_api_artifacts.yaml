@@ -6,7 +6,7 @@ vars_apigateway_archives:
     overwrite: "apis,policies,policyactions"
     fixingMissingVersions: "true"
     preserveAssetState: "true"
-  - local_path: "./demo_artifacts/apigw-archive-demo-bookstore-1.0.zip"
+  - path: "./demo_artifacts/apigw-archive-demo-bookstore-1.0.zip"
     overwrite: "apis,policies,policyactions"
     fixingMissingVersions: "true"
     preserveAssetState: "true"
