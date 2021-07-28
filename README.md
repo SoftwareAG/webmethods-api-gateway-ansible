@@ -1,8 +1,11 @@
 # webmethods-api-gateway-ansible
 
-A sample project that demonstrates how to use the Ansible roles to install and configure the API Gateway
+A project that demonstrates how to use of [Ansible](https://github.com/ansible/ansible) to install and configure the API Gateway.
+
+This project makes use of common Ansible roles available at [sagdevops-ansible-roles](https://github.com/SoftwareAG/sagdevops-ansible-roles) 
 
 # Authors
+
 Fabien Sanglier
 - Emails: [@Software AG](mailto:fabien.sanglier@softwareag.com) // [@Software AG Government Solutions](mailto:fabien.sanglier@softwareaggov.com)
 - Github: 
@@ -16,7 +19,9 @@ After you go through the general pre-requisites detailed on this page, simply re
  - [API Gateway Configuration via Ansible](./configurations/README.md)
  - [API Gateway Installation via Ansible](./installations/README.md)
 
-## Pre-requisite: Install Ansible
+# Pre-requisites
+
+## Install Ansible
 
 If not already done, you'll need to install Ansible onto a server of your choice. 
 There are many tutorial expaining the task...so I will not re-iterate that here.
@@ -27,7 +32,7 @@ Few things to note:
  - The anisble server shoud have network connectivity to the runtime webMethods ApiGateway
    - SSH connectivity will be needed for installation, patching, and local file-base configurations
    - HTTP connectivity (on API Gateway runtime port) will be needed to call the REST APIs for the various configuration items
-## Pre-requisite: Adding local to ansible
+## Adding local to ansible
 
 Because we run some tasks from the local ansible server, let's add the "local" config in the global ansible host:
 
@@ -36,7 +41,7 @@ echo "[local]" >> /etc/ansible/hosts
 echo "localhost ansible_connection=local" >> /etc/ansible/hosts
 ```
 
-## Pre-requisite: Download the ansible roles
+## Download the ansible roles
 
 This project uses the core ansible roles defined in [sagdevops-ansible-roles](https://github.com/SoftwareAG/sagdevops-ansible-roles)
 
@@ -48,7 +53,7 @@ It is preferred to download a specific release for the "sagdevops-ansible-roles"
 
 Current supported /recommended version is [dev-0.2.3](https://github.com/SoftwareAG/sagdevops-ansible-roles/archive/refs/tags/dev-0.2.3.tar.gz)
 
-## Pre-requisite: AWS S3 connectivity (optional)
+## AWS S3 connectivity (optional)
 
 Some of the playbooks are written in such a way to pull file artifacts from AWS S3. 
 If you want to test such automation features, you will need to have an AWS S3 environment available from the Ansible server.
