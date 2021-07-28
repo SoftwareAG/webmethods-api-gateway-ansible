@@ -12,3 +12,5 @@ getfroms3_defaults_bucket_prefix: "{{ envvars_apigateway_aws_s3_bucket_prefix }}
 
 ##################### aws cli executable
 aws_cli_exe: "/usr/local/bin/aws"
+
+disable_no_log: true
