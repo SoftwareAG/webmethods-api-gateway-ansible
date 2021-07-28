@@ -16,8 +16,32 @@ Fabien Sanglier
 
 After you go through the general pre-requisites detailed on this page, simply refer to the following sub-sections based on what you want to do:
 
- - [API Gateway Configuration via Ansible](./configurations/README.md)
- - [API Gateway Installation via Ansible](./installations/README.md)
+- [API Gateway Configuration via Ansible](./configurations/README.md)
+  - Here are the current configuration items implemented by this project:
+    - update admin password
+    - set ports
+    - set ssl certs (keystore, truststore)
+    - set extended settings
+    - set ldap
+    - set loadbalancer urls
+    - set promotion stages
+    - create users
+    - create groups and assign the users
+    - create teams and assign the groups
+    - import apigateway archive
+    - set api plans
+    - set api packages
+    - set aliases
+    - set api applications
+    - set apiportal destination
+    - publish apis to apiportal
+    - publish api packages to apiportal
+- [API Gateway Installation via Ansible](./installations/README.md)
+  - Here are the current installation items implemented by this project (to-add)
+    - Installation of Gateway nodes
+    - Patching of gateway nodes
+    - Local configs (ie. JVM tuning, etc...)
+    - Clustering and Connectivity to external Elastic Search
 
 # Pre-requisites
 
