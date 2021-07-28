@@ -32,7 +32,12 @@ The versions tested are 10.5 and 10.7.
 
 If you already have certs to test with, simply update the env file with the required values (for example, env vars in section "ssl certs" in ./envs/envs_sample1)
 
-But if not, let's generate some self-sign certs for testing:
+```bash
+env_apigateway_keystore_filepath="/path/to/certs/your_ssl_cert.jks"
+env_apigateway_truststore_filepath="/path/to/certs/your_ssl_ca_truststore.jks"
+```
+
+BUT, if not, let's generate some self-sign certs for testing:
 
 1) Create a private key and public certificate
 
@@ -62,12 +67,11 @@ In the end, you should have the following 2 files (in addition to 3 other interm
  - sagdemokey.jks
  - sagdemotrust.jks
 
-
 IMPORTANT: please be sure to update the env vars related to these new generated files (ie. the env vars in section "ssl certs" in ./envs/envs_sample1)
 
-```
-env_apigateway_keystore_filepath="sagdemokey.jks"
-env_apigateway_truststore_filepath="sagdemotrust.jks"
+```bash
+env_apigateway_keystore_filepath="/path/to/certs/sagdemokey.jks"
+env_apigateway_truststore_filepath="/path/to/certs/sagdemotrust.jks"
 ```
 
 # Running the playbook
