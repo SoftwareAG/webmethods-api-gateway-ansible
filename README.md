@@ -28,13 +28,16 @@ echo "[local]" >> /etc/ansible/hosts
 echo "localhost ansible_connection=local" >> /etc/ansible/hosts
 ```
 
-## Pre-requisite: Install SoftwareAG ansible roles
+## Pre-requisite: Download the ansible roles
 
 This project uses the core ansible roles defined in [sagdevops-ansible-roles](https://github.com/SoftwareAG/sagdevops-ansible-roles)
 
-You need to download the "sagdevops-ansible-roles" on the ansible server so it can be referenced by the playbook projects.
+You need to download and extract the "sagdevops-ansible-roles" on the ansible server so it can be referenced by this playbook projects.
+
+Make sure to update the value "roles_path" in "ansible.cfg" to include the path to the newly downloaded/extracted roles (see [./configurations/ansible.cfg](./configurations/ansible.cfg) for working example)
 
 It is preferred to download a specific release for the "sagdevops-ansible-roles" to avoid incompatibilities.
+
 Current supported /recommended version is [dev-0.2.3](https://github.com/SoftwareAG/sagdevops-ansible-roles/archive/refs/tags/dev-0.2.3.tar.gz)
 
 ## Pre-requisite: AWS S3 connectivity (optional)
