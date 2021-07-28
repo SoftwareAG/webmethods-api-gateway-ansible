@@ -9,13 +9,15 @@ The versions tested are 10.5 and 10.7.
 
 Here are the current configuration items implemented by this project:
  - update admin password
- - create users
- - create groups and assign the users
- - create teams and assign the groups
+ - set ports
+ - set ssl certs (keystore, truststore)
  - set extended settings
  - set ldap
  - set loadbalancer urls
  - set promotion stages
+ - create users
+ - create groups and assign the users
+ - create teams and assign the groups
  - import apigateway archive (from s3)
  - set api plans
  - set api packages
@@ -70,7 +72,7 @@ keytool -importkeystore -destkeystore sagdemokey.jks -deststoretype pkcs12 -srck
 4) Create a trust store
 
 ```bash
-keytool -import -file sagdemocert.pem -keystore sagdemotrust.jks
+keytool -import -file sagdemocert.pem -alias sagdemocert -keystore sagdemotrust.jks
 ```
 
 In the end, you should have the following 2 files (in addition to 3 other intermediary files) which we'll use for the gateway configs:
