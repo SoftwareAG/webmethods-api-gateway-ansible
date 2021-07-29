@@ -9,7 +9,7 @@ envvars_apigateway_environment_stage: "dev"
 
 # apigateway target
 envvars_apigateway_protocol: "http"
-envvars_apigateway_host: "internal_apigateway_dev"
+envvars_apigateway_host: "rest_access_apigateway_dev"
 envvars_apigateway_port: "5555"
 
 ## rest login info
@@ -59,8 +59,8 @@ envvars_apigateway_loadbalancers_webapp_url: "https://external_apigateway_dev"
 
 ## api gateway portal registration
 envvars_apigateway_portalgateway_version: "1.0"
-envvars_apigateway_portalgateway_gateway_username: "Administrator"
-envvars_apigateway_portalgateway_gateway_password: "somethingnew"
+envvars_apigateway_portalgateway_gateway_username: "{{ envvars_apigateway_rest_login_username }}"
+envvars_apigateway_portalgateway_gateway_password: "{{ envvars_apigateway_rest_login_password }}"
 envvars_apigateway_portalgateway_gateway_url: "http://internal_apigateway_dev:5555"
 envvars_apigateway_portalgateway_portal_url: "http://internal_apiportal_dev:18101"
 envvars_apigateway_portalgateway_portal_username: "system"

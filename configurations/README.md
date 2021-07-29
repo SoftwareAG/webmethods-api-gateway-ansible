@@ -40,32 +40,38 @@ All relevant cert details are already added to the sample configuration at [./en
 
 # Running the sample playbook
 
+## Update the env variable files
 
+The general values to update are in the ./environments folder. We have provided 2 sample environment files to demonstrate how you can change env values from environment to environment:
+- [dev env file](./environments/dev/apigateway.yaml)
+- [prod env file](./environments/prod/apigateway.yaml)
 
+In these env files, most values are correct for the demo, but a few will need to be changed based on your environment...such as:
+- envvars_apigateway_protocol: "http"
+- envvars_apigateway_host: "rest_access_apigateway_dev"
+- envvars_apigateway_port: "5555"
+- envvars_apigateway_rest_login_username: "Administrator"
+- envvars_apigateway_rest_login_password: "somethingnew"
+- envvars_apigateway_rest_login_password_old: "manage"
 
-## Load the right env variables in the shell
+Update the values as needed.
 
-This project was built in such a way that the main config items can be provided by Environment Variables (to make it easy when it comes to containerizing the project down the road)
-But the project could be updated easily to load the parameters from standard ansible var files should it be needed instead.
-
-A sample env var file is provided at [./envs/envs_sample1](./envs/envs_sample1).
-From this example, create an ENV var file that works for you...and load all these ENVs in the shell where you'll be running ansible commands.
-
-A simple shell command provided below will do just that (take all the params in the file, and export them as ENV vars in your shell):
-
-```bash
-ENV_VAR_FILE=./envs/envs_sample1
-source <( sed -E -n 's/[^#]+/export &/ p' $ENV_VAR_FILE )
-```
 ## Run the playbook
 
-Once the ENVs vars are loaded in the shell, the Ansible playbook should have everything it needs to execute...
+Once the ENVs vars are updated correctly, the Ansible playbook should have everything it needs to execute...
 
-Simply run:
+Simply run for a DEV deployment:
 
 ```bash
-ansible-playbook apply_configs.yaml
+ansible-playbook apply_configs.yaml --extra-vars '{ env : dev }'
 ```
+
+Simply run for a PROD deployment:
+
+```bash
+ansible-playbook apply_configs.yaml --extra-vars '{ env : prod }'
+```
+
 # Env variables Details
 
 ## Enable / Disable Flags
