@@ -42,25 +42,25 @@ BUT, if not, let's generate some self-sign certs for testing:
 1) Create a private key and public certificate
 
 ```bash
-openssl req -newkey rsa:2048 -x509 -keyout sagdemokey.pem -out sagdemocert.pem -days 3650
+openssl req -newkey rsa:2048 -x509 -keyout ./demo_artifacts/sagdemokey.pem -out ./demo_artifacts/sagdemocert.pem -days 3650
 ```
 
 2) Create a PKCS12 keystore
 
 ```bash
-openssl pkcs12 -export -in sagdemocert.pem -inkey sagdemokey.pem -out sagdemocerts.p12 -name "sagdemo"
+openssl pkcs12 -export -in ./demo_artifacts/sagdemocert.pem -inkey ./demo_artifacts/sagdemokey.pem -out ./demo_artifacts/sagdemocerts.p12 -name "sagdemo"
 ```
 
 3) Convert the PKCS12 keystore to JKS keytstore using keytool command
 
 ```bash
-keytool -importkeystore -destkeystore sagdemocerts.jks -deststoretype pkcs12 -srckeystore sagdemocerts.p12 -srcstoretype PKCS12
+keytool -importkeystore -destkeystore ./demo_artifacts/sagdemocerts.jks -deststoretype pkcs12 -srckeystore ./demo_artifacts/sagdemocerts.p12 -srcstoretype PKCS12
 ```
 
 4) Create a trust store
 
 ```bash
-keytool -import -file sagdemocert.pem -alias sagdemocert -keystore sagdemotrust.jks
+keytool -import -file ./demo_artifacts/sagdemocert.pem -alias sagdemocert -keystore ./demo_artifacts/sagdemotrust.jks
 ```
 
 In the end, you should have the following 2 files (in addition to 3 other intermediary files) which we'll use for the gateway configs:
@@ -70,8 +70,12 @@ In the end, you should have the following 2 files (in addition to 3 other interm
 IMPORTANT: please be sure to update the env vars related to these new generated files (ie. the env vars in section "ssl certs" in ./envs/envs_sample1)
 
 ```bash
-env_apigateway_keystore_filepath="/path/to/certs/sagdemokey.jks"
-env_apigateway_truststore_filepath="/path/to/certs/sagdemotrust.jks"
+env_apigateway_keystore_filepath="./demo_artifacts/sagdemocerts.jks"
+env_apigateway_keystore_password="password_you_chose"
+env_apigateway_keystore_keyalias="sagdemo"
+env_apigateway_keystore_keyalias_password="password_you_chose"
+env_apigateway_truststore_filepath="./demo_artifacts/sagdemotrust.jks"
+env_apigateway_truststore_password="password_you_chose"
 ```
 
 # Running the playbook
