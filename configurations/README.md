@@ -30,55 +30,19 @@ To test the configurations playbook, you'll need a working and network accessibl
 The versions tested are 10.5 and 10.7. 
 ## SSL configurations
 
-If you already have certs to test with, simply update the env file with the required values (for example, env vars in section "ssl certs" in ./envs/envs_sample1)
+If you already have certs to test with, simply update the [dev env file](./environments/dev/apigateway.yaml) with the required values (under section "ssl certs")
 
-```bash
-env_apigateway_keystore_filepath="/path/to/certs/your_ssl_cert.jks"
-env_apigateway_truststore_filepath="/path/to/certs/your_ssl_ca_truststore.jks"
-```
+BUT, if not, we've generated 2 sample self-signed certs + truststore for you:
+ - ./demo_artifacts/sagdemocerts.jks
+ - ./demo_artifacts/sagdemotrust.jks
 
-BUT, if not, let's generate some self-sign certs for testing:
+All relevant cert details are already added to the sample configuration at [./environments/dev/apigateway.yaml](./environments/dev/apigateway.yaml)
 
-1) Create a private key and public certificate
+# Running the sample playbook
 
-```bash
-openssl req -newkey rsa:2048 -x509 -keyout ./demo_artifacts/sagdemokey.pem -out ./demo_artifacts/sagdemocert.pem -days 3650
-```
 
-2) Create a PKCS12 keystore
 
-```bash
-openssl pkcs12 -export -in ./demo_artifacts/sagdemocert.pem -inkey ./demo_artifacts/sagdemokey.pem -out ./demo_artifacts/sagdemocerts.p12 -name "sagdemo"
-```
 
-3) Convert the PKCS12 keystore to JKS keytstore using keytool command
-
-```bash
-keytool -importkeystore -destkeystore ./demo_artifacts/sagdemocerts.jks -deststoretype pkcs12 -srckeystore ./demo_artifacts/sagdemocerts.p12 -srcstoretype PKCS12
-```
-
-4) Create a trust store
-
-```bash
-keytool -import -file ./demo_artifacts/sagdemocert.pem -alias sagdemocert -keystore ./demo_artifacts/sagdemotrust.jks
-```
-
-In the end, you should have the following 2 files (in addition to 3 other intermediary files) which we'll use for the gateway configs:
- - sagdemocerts.jks
- - sagdemotrust.jks
-
-IMPORTANT: please be sure to update the env vars related to these new generated files (ie. the env vars in section "ssl certs" in ./envs/envs_sample1)
-
-```bash
-env_apigateway_keystore_filepath="./demo_artifacts/sagdemocerts.jks"
-env_apigateway_keystore_password="password_you_chose"
-env_apigateway_keystore_keyalias="sagdemo"
-env_apigateway_keystore_keyalias_password="password_you_chose"
-env_apigateway_truststore_filepath="./demo_artifacts/sagdemotrust.jks"
-env_apigateway_truststore_password="password_you_chose"
-```
-
-# Running the playbook
 ## Load the right env variables in the shell
 
 This project was built in such a way that the main config items can be provided by Environment Variables (to make it easy when it comes to containerizing the project down the road)
@@ -128,6 +92,47 @@ ansible-playbook apply_configs.yaml
 ## Others
 
 
+# Appendix: Self-signed SSL certificates generation 
+
+To generate some self-sign certs for testing:
+
+1) Create a private key and public certificate
+
+```bash
+openssl req -newkey rsa:2048 -x509 -keyout ./demo_artifacts/sagdemokey.pem -out ./demo_artifacts/sagdemocert.pem -days 3650
+```
+
+2) Create a PKCS12 keystore
+
+```bash
+openssl pkcs12 -export -in ./demo_artifacts/sagdemocert.pem -inkey ./demo_artifacts/sagdemokey.pem -out ./demo_artifacts/sagdemocerts.p12 -name "sagdemo"
+```
+
+demo123!
+
+3) Convert the PKCS12 keystore to JKS keytstore using keytool command
+
+```bash
+keytool -importkeystore -destkeystore ./demo_artifacts/sagdemocerts.jks -deststoretype pkcs12 -srckeystore ./demo_artifacts/sagdemocerts.p12 -srcstoretype PKCS12
+```
+
+4) Create a trust store
+
+```bash
+keytool -import -file ./demo_artifacts/sagdemocert.pem -alias sagdemocert -keystore ./demo_artifacts/sagdemotrust.jks
+```
+
+In the end, you should have the following 2 files (in addition to 3 other intermediary files) which we'll use for the gateway configs:
+ - sagdemocerts.jks
+ - sagdemotrust.jks
+
+IMPORTANT: please be sure to update the env vars related to these new generated files (ie. the env vars in section "ssl certs" in ./envs/envs_sample1)
+
+
+
+
+
+
 
 ______________________
 These tools are provided as-is and without warranty or support. They do not constitute part of the Software AG product suite. Users are free to use, fork and modify them, subject to the license agreement. While Software AG welcomes contributions, we cannot guarantee to include every contribution in the master project.
@@ -137,3 +142,6 @@ For more information you can Ask a Question in the [TECHcommunity Forums](http:/
 You can find additional information in the [Software AG TECHcommunity](http://techcommunity.softwareag.com/home/-/product/name/webmethods).
 _____________
 Contact us at [TECHcommunity](mailto:technologycommunity@softwareag.com?subject=Github/SoftwareAG) if you have any questions.
+
+
+
