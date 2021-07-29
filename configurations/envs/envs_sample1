@@ -49,7 +49,7 @@ env_apigateway_users_sample3_password="changeme"
 ## apigateway load balancer envs
 env_apigateway_lb_http_url="http://external_apigateway"
 env_apigateway_lb_https_url="https://external_apigateway"
-env_apigateway_lb_websocket_url=""
+env_apigateway_lb_websocket_url="ws://external_apigateway"
 env_apigateway_lb_webapp_url="https://external_apigateway"
 
 ## api gateway portal registration
