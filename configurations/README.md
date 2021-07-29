@@ -48,13 +48,13 @@ openssl req -newkey rsa:2048 -x509 -keyout sagdemokey.pem -out sagdemocert.pem -
 2) Create a PKCS12 keystore
 
 ```bash
-openssl pkcs12 -export -in sagdemocert.pem -inkey sagdemokey.pem -out sagdemokey.p12 -name "sagdemo"
+openssl pkcs12 -export -in sagdemocert.pem -inkey sagdemokey.pem -out sagdemocerts.p12 -name "sagdemo"
 ```
 
 3) Convert the PKCS12 keystore to JKS keytstore using keytool command
 
 ```bash
-keytool -importkeystore -destkeystore sagdemokey.jks -deststoretype pkcs12 -srckeystore sagdemokey.p12 -srcstoretype PKCS12
+keytool -importkeystore -destkeystore sagdemocerts.jks -deststoretype pkcs12 -srckeystore sagdemocerts.p12 -srcstoretype PKCS12
 ```
 
 4) Create a trust store
@@ -64,7 +64,7 @@ keytool -import -file sagdemocert.pem -alias sagdemocert -keystore sagdemotrust.
 ```
 
 In the end, you should have the following 2 files (in addition to 3 other intermediary files) which we'll use for the gateway configs:
- - sagdemokey.jks
+ - sagdemocerts.jks
  - sagdemotrust.jks
 
 IMPORTANT: please be sure to update the env vars related to these new generated files (ie. the env vars in section "ssl certs" in ./envs/envs_sample1)

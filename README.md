@@ -79,7 +79,7 @@ Current supported /recommended version is [dev-0.2.3](https://github.com/Softwar
 
 ## AWS S3 connectivity (optional)
 
-Some of the playbooks are written in such a way to pull file artifacts from AWS S3. 
+Altghough not required in this demo if you pull the content by other means, some of the playbooks can pull file artifacts for you from AWS S3. 
 If you want to test such automation features, you will need to have an AWS S3 environment available from the Ansible server.
 
 Such artifacts to pull from S3 are:
@@ -88,8 +88,10 @@ Such artifacts to pull from S3 are:
    - Installer images + installer scripts
    - Fix images + sum scripts
  - Configurations artifacts
-   - keystores, truststores
-   - Apigateway archives to import
+   - keystore/truststore
+   - apigateway archives
+
+
 
 
 ______________________

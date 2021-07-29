@@ -1,6 +1,13 @@
 
-# the env stage (ie. dev, test, staging, prod)
-env_apigateway_stage="dev"
+# apigateway target
+env_apigateway_protocol="http"
+env_apigateway_host="internal_apigateway"
+env_apigateway_port="5555"
+
+## rest login info
+env_apigateway_rest_user="Administrator"
+env_apigateway_rest_password="somethingnew"
+env_apigateway_rest_password_old="manage"
 
 # the flags to enable/disable the config item
 env_apigateway_configure_usermgt="true"
@@ -20,27 +27,16 @@ env_apigateway_configure_portalgateway="true"
 env_apigateway_configure_apis_publish_groups="true"
 env_apigateway_configure_packages_publish_groups="true"
 
-# apigateway target
-env_apigateway_protocol="http"
-env_apigateway_host="internal_apigateway.hostname"
-env_apigateway_port="5555"
-
-## rest login info
-env_apigateway_rest_user="Administrator"
-env_apigateway_rest_password="somethingnew"
-env_apigateway_rest_password_old="manage"
-
-## aws s3 repo artifacts
-env_apigateway_aws_s3_bucket=""
-env_apigateway_aws_s3_bucket_prefix=""
+# the env stage (ie. dev, test, staging, prod)
+env_apigateway_stage="dev"
 
 ## ssl certs
-env_apigateway_keystore_filepath="sagdemokey.jks"
-env_apigateway_keystore_password="changeme1"
-env_apigateway_keystore_keyalias="demo"
-env_apigateway_keystore_keyalias_password="changeme2"
-env_apigateway_truststore_filepath="sagdemotrust.jks"
-env_apigateway_truststore_password="changeme3"
+env_apigateway_keystore_filepath="./demo_artifacts/sagdemocerts.jks"
+env_apigateway_keystore_password="demo123!"
+env_apigateway_keystore_keyalias="sagdemo"
+env_apigateway_keystore_keyalias_password="demo123!"
+env_apigateway_truststore_filepath="./demo_artifacts/sagdemotrust.jks"
+env_apigateway_truststore_password="demo123!"
 
 ## local sample users
 env_apigateway_users_sample1_username="sampleuser1.apiadmin"
@@ -51,10 +47,10 @@ env_apigateway_users_sample3_username="sampleuser3.apiuser"
 env_apigateway_users_sample3_password="changeme"
 
 ## apigateway load balancer envs
-env_apigateway_lb_http_url="http://external_api_access"
-env_apigateway_lb_https_url="https://external_api_access"
+env_apigateway_lb_http_url="http://external_apigateway"
+env_apigateway_lb_https_url="https://external_apigateway"
 env_apigateway_lb_websocket_url=""
-env_apigateway_lb_webapp_url="https://external_webapp"
+env_apigateway_lb_webapp_url="https://external_apigateway"
 
 ## api gateway portal registration
 env_apigateway_portalgateway_version="1.0"
