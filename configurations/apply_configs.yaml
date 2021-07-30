@@ -8,7 +8,7 @@
   vars:
     pvar_inventory_hosts_pattern: local
     var_files:
-      - "./vars/apigateway_envs.yaml"
+      - "./environments/{{ env | default('envvars',true) }}/apigateway.yaml"
       - "./vars/apigateway_configs_admin.yaml"
       - "./vars/apigateway_configs_usermgt.yaml"
       - "./vars/apigateway_configs_sslcerts.yaml"
