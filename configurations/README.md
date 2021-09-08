@@ -72,6 +72,14 @@ Simply run for a PROD deployment:
 ansible-playbook apply_configs.yaml --extra-vars '{ env : prod }'
 ```
 
+If you want to additionnaly customize few values in DEV, you can pass extra vars as follow:
+
+```bash
+ansible-playbook apply_configs.yaml --extra-vars '{ env : dev, envvars_apigateway_host: some.other.dev.server, envvars_apiportal_host: some.other.dev.server }'
+```
+
+apiportal1.fabien.clouddemo.saggov.local
+
 # Env variables Details
 
 ## Enable / Disable Flags
