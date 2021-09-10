@@ -44,25 +44,30 @@ All relevant cert details are already added to the sample configuration at [./en
 ## Update the env variable files
 
 The general values to update are in the ./environments folder. We have provided 2 sample environment files to demonstrate how you can change env values from environment to environment:
-- [dev env file](./environments/dev/apigateway.yaml)
-- [prod env file](./environments/prod/apigateway.yaml)
+- [local env file](./environments/local/apigateway.yaml) - for running the playbook directly on your local environment (or directly on a server that has ansible, apigateway, apiportal altogether)
+- [dev env file](./environments/dev/apigateway.yaml) - for running the playbook against your "fictitious" DEV environment
+- [prod env file](./environments/prod/apigateway.yaml) - for running the playbook against your "fictitious" PROD environment
 
 In these env files, most values are correct for the demo, but a few will need to be changed based on your environment...such as:
 
-- Connectivity info to the apigateway server (needed to run the configurations against your target apigateway)
+- Connectivity info to the API GATEWAY server (needed to run the configurations against your target apigateway)
   - envvars_apigateway_protocol: "http"
   - envvars_apigateway_host: "<YOUR API GATEWAY SERVER IP/HOSTNAME>"
   - envvars_apigateway_port: "<YOUR API GATEWAY SERVER PORT, usually 5555>"
 
-- Connectivity credentials to the apigateway server (to be able to connect to the internal APIs, as well as change the default password to something else -- ie. the value in envvars_apigateway_rest_login_password will be the new password...)
+- Connectivity credentials to the API GATEWAY server (to be able to connect to the internal APIs, as well as change the default password to something else -- ie. the value in envvars_apigateway_rest_login_password will be the new password...)
   - envvars_apigateway_rest_login_username: "Administrator"
-  - envvars_apigateway_rest_login_password: "somethingnew"
-  - envvars_apigateway_rest_login_password_old: "manage"
+  - envvars_apigateway_rest_login_password: "<A new password to apply for user Administrator>"
+  - envvars_apigateway_rest_login_password_old: "<The default api gateway password for user Administrator>"
 
-- Connectivity info to the apiportal server (ONLY needed to test the publishing from APIGateway to API Portal, NOT to configure API Portal in this case)
+- Connectivity info to the API PORTAL server (ONLY needed to test the publishing from APIGateway to API Portal, NOT to configure API Portal in this case)
   - envvars_apiportal_protocol: "http"
   - envvars_apiportal_host: "<YOUR API PORTAL SERVER IP/HOSTNAME>"
   - envvars_apiportal_port: "<YOUR API PORTAL SERVER PORT, usually 18101>"
+
+- Connectivity credentials to the API PORTAL server (ONLY needed to test the publishing from APIGateway to API Portal)
+  - envvars_apigateway_portalgateway_portal_username: "system"
+  - envvars_apigateway_portalgateway_portal_password: "<The api portal password for user system>"
 
 - External load balancer urls
   - envvars_apigateway_loadbalancers_http_urls: "<YOUR EXTERNAL NON-SSL LOADBALANCER ACCESS FOR GATEWAY HTTP RUNTIME ENDPOINT>"
