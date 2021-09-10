@@ -87,17 +87,10 @@ roles_path    = ~/.ansible/roles:~/sagdevops-ansible-roles
 
 ## Download this project onto the Ansible server
 
-Either clone the project:
+Although main branch should always be functional, it's best to use a release tag (versus downloading the latest on main)
 
-```bash
-git clone https://github.com/SoftwareAG/webmethods-api-gateway-ansible.git
-```
-
-or download the latest rev as a zip file
-
-```bash
-https://github.com/SoftwareAG/webmethods-api-gateway-ansible/archive/refs/heads/main.zip
-```
+Current latest tag:
+- [0.1](https://github.com/SoftwareAG/webmethods-api-gateway-ansible/archive/refs/tags/0.1.tar.gz)
 
 ## Continue deeper...
 
