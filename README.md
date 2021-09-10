@@ -99,21 +99,12 @@ or download the latest rev as a zip file
 https://github.com/SoftwareAG/webmethods-api-gateway-ansible/archive/refs/heads/main.zip
 ```
 
-## AWS S3 connectivity (optional)
+## Continue deeper...
 
-Altghough not required in this demo if you pull the content by other means, some of the playbooks can pull file artifacts for you from AWS S3. 
-If you want to test such automation features, you will need to have an AWS S3 environment available from the Ansible server.
+for specific instructions about:
 
-Such artifacts to pull from S3 are:
- - Installations artifacts:
-   - SoftwareAG installer + SoftwareAG Update Manager (SUM) executables
-   - Installer images + installer scripts
-   - Fix images + sum scripts
- - Configurations artifacts
-   - keystore/truststore
-   - apigateway archives
-
-
+- API Gateway Configurations Automation, go to: [API Gateway Configuration via Ansible](./configurations/README.md)
+- API Gateway Installation Automation, go to: [API Gateway Installation via Ansible](./installations/README.md)
 
 
 ______________________

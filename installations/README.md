@@ -2,6 +2,18 @@
 
 Instructions TODOs
 
+## AWS S3 connectivity (optional)
+
+The "installations" playbooks will pull file artifacts for you from AWS S3. 
+If you want to test such automation features, you will need to have an AWS S3 environment available from the Ansible server.
+
+Such artifacts to pull from S3 are:
+ - SoftwareAG installer + SoftwareAG Update Manager (SUM) executables
+ - Installer images + installer scripts
+ - Fix images + sum scripts
+
+
+
 ______________________
 These tools are provided as-is and without warranty or support. They do not constitute part of the Software AG product suite. Users are free to use, fork and modify them, subject to the license agreement. While Software AG welcomes contributions, we cannot guarantee to include every contribution in the master project.
 _____________

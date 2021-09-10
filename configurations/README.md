@@ -28,6 +28,7 @@ Here are the current configuration items implemented by this project:
 
 To test the configurations playbook, you'll need a working and network accessible apigateway (and optionally an apiportal if you want to test the gateway to portal publishing)
 The versions tested are 10.5 and 10.7. 
+
 ## SSL configurations
 
 If you already have certs to test with, simply update the [dev env file](./environments/dev/apigateway.yaml) with the required values (under section "ssl certs")
@@ -47,14 +48,31 @@ The general values to update are in the ./environments folder. We have provided 
 - [prod env file](./environments/prod/apigateway.yaml)
 
 In these env files, most values are correct for the demo, but a few will need to be changed based on your environment...such as:
-- envvars_apigateway_protocol: "http"
-- envvars_apigateway_host: "rest_access_apigateway_dev"
-- envvars_apigateway_port: "5555"
-- envvars_apigateway_rest_login_username: "Administrator"
-- envvars_apigateway_rest_login_password: "somethingnew"
-- envvars_apigateway_rest_login_password_old: "manage"
 
-Update the values as needed.
+- Connectivity info to the apigateway server (needed to run the configurations against your target apigateway)
+  - envvars_apigateway_protocol: "http"
+  - envvars_apigateway_host: "<YOUR API GATEWAY SERVER IP/HOSTNAME>"
+  - envvars_apigateway_port: "<YOUR API GATEWAY SERVER PORT, usually 5555>"
+
+- Connectivity credentials to the apigateway server (to be able to connect to the internal APIs, as well as change the default password to something else -- ie. the value in envvars_apigateway_rest_login_password will be the new password...)
+  - envvars_apigateway_rest_login_username: "Administrator"
+  - envvars_apigateway_rest_login_password: "somethingnew"
+  - envvars_apigateway_rest_login_password_old: "manage"
+
+- Connectivity info to the apiportal server (ONLY needed to test the publishing from APIGateway to API Portal, NOT to configure API Portal in this case)
+  - envvars_apiportal_protocol: "http"
+  - envvars_apiportal_host: "<YOUR API PORTAL SERVER IP/HOSTNAME>"
+  - envvars_apiportal_port: "<YOUR API PORTAL SERVER PORT, usually 18101>"
+
+- External load balancer urls
+  - envvars_apigateway_loadbalancers_http_urls: "<YOUR EXTERNAL NON-SSL LOADBALANCER ACCESS FOR GATEWAY HTTP RUNTIME ENDPOINT>"
+  - envvars_apigateway_loadbalancers_https_urls: "<YOUR EXTERNAL SSL LOADBALANCER ACCESS FOR GATEWAY HTTPS RUNTIME ENDPOINT>"
+  - envvars_apigateway_loadbalancers_websocket_urls: "ws://<YOUR EXTERNAL LOADBALANCER ACCESS FOR GATEWAY WEBSOCKET RUNTIME ENDPOINT>"
+  - envvars_apigateway_loadbalancers_webapp_url: "<YOUR EXTERNAL LOADBALANCER ACCESS FOR GATEWAY UI ENDPOINT>"
+
+Some other values like the sample user passwords, or the keystores/trustures could also be updated as desired...
+
+Update all these values in the env file you'll be using for your first run...
 
 ## Run the playbook
 
@@ -71,14 +89,6 @@ Simply run for a PROD deployment:
 ```bash
 ansible-playbook apply_configs.yaml --extra-vars '{ env : prod }'
 ```
-
-If you want to additionnaly customize few values in DEV, you can pass extra vars as follow:
-
-```bash
-ansible-playbook apply_configs.yaml --extra-vars '{ env : dev, envvars_apigateway_host: some.other.dev.server, envvars_apiportal_host: some.other.dev.server }'
-```
-
-apiportal1.fabien.clouddemo.saggov.local
 
 # Env variables Details
 
