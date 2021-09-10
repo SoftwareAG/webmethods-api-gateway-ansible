@@ -19,8 +19,8 @@ After you go through the general pre-requisites detailed on this page, simply re
 - [API Gateway Configuration via Ansible](./configurations/README.md)
   - Here are the current configuration items implemented by this project:
     - update admin password
-    - set ports
     - set ssl certs (keystore, truststore)
+    - set ports (different types - http, https, internal, external)
     - set extended settings
     - set ldap
     - set loadbalancer urls
@@ -69,12 +69,21 @@ echo "localhost ansible_connection=local" >> /etc/ansible/hosts
 ## Download the ansible roles
 
 This project uses the core ansible roles defined in [sagdevops-ansible-roles](https://github.com/SoftwareAG/sagdevops-ansible-roles)
-
 You need to download and extract the "sagdevops-ansible-roles" on the ansible server so it can be referenced by this playbook projects.
-It is preferred to download a specific release for the "sagdevops-ansible-roles" to avoid incompatibilities.
-Current supported /recommended version is [dev-0.2.3](https://github.com/SoftwareAG/sagdevops-ansible-roles/archive/refs/tags/dev-0.2.3.tar.gz)
 
-Make sure to update the value "roles_path" in "ansible.cfg" to include the path to the newly downloaded/extracted roles (see [./configurations/ansible.cfg](./configurations/ansible.cfg) for working example)
+It is recommended to download a specific release (instead of HEAD of main branch) for the "sagdevops-ansible-roles" to avoid incompatibilities
+Current tested version of sagdevops-ansible-roles is:
+- [sagdevops-ansible-roles - dev-0.2.4](https://github.com/SoftwareAG/sagdevops-ansible-roles/archive/refs/tags/dev-0.2.4.tar.gz)
+
+Once you downloaded the "sagdevops-ansible-roles" release, make sure to update the value "roles_path" in "ansible.cfg" to include the path to the newly downloaded/extracted roles (see [./configurations/ansible.cfg](./configurations/ansible.cfg) for working example)
+
+ie. ansible.cfg:
+
+```txt
+...
+roles_path    = ~/.ansible/roles:~/sagdevops-ansible-roles
+...
+```
 
 ## Download this project onto the Ansible server
 
