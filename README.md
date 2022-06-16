@@ -1,10 +1,10 @@
 # webmethods-api-gateway-ansible
 
-A project that demonstrates how to use of [Ansible](https://github.com/ansible/ansible) to install, patch and configure the SoftwareAG API Gateway stack.
+A project that demonstrates how to use of [Ansible](https://github.com/ansible/ansible) to operationalize the installation, patching, and configuration of SoftwareAG API Management stack
 
-[DEPRECATION NOTICE!!]
+**[ PROJECT REDIRECTION NOTICE ]**
 
-Head over to [SoftwareAG Government Solutions's](https://www.softwareaggov.com) Github Project [webmethods-ansible-api-gateway](https://github.com/softwareag-government-solutions/webmethods-ansible-api-gateway) for latest on how to operationalize with Ansible the installation, patching, and configuration of SoftwareAG API Gateway
+Head over to [webmethods-ansible-api-gateway](https://github.com/softwareag-government-solutions/webmethods-ansible-api-gateway), hosted on [SoftwareAG Government Solutions's](https://www.softwareaggov.com) GitHub, for latest on how to operationalize with Ansible the installation, patching, and configuration of SoftwareAG API Gateway
 
 ______________________
 These tools are provided as-is and without warranty or support. They do not constitute part of the Software AG product suite. Users are free to use, fork and modify them, subject to the license agreement. While Software AG welcomes contributions, we cannot guarantee to include every contribution in the master project.
